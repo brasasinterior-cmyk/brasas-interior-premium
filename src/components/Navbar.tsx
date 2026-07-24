@@ -1,31 +1,36 @@
 import { useEffect, useState } from "react";
 import { Link, useRouterState } from "@tanstack/react-router";
-import { Menu, X, Flame, Moon, Sun } from "lucide-react";
+import { Menu, X, Moon, Sun, MessageCircle } from "lucide-react";
+import { WHATSAPP_URL } from "./WhatsAppFloat";
 
 const links = [
-  { to: "/", label: "Início" },
   { to: "/cardapio", label: "Cardápio" },
+  { to: "/sobre", label: "Nossa casa" },
   { to: "/galeria", label: "Galeria" },
-  { to: "/sobre", label: "Sobre" },
   { to: "/contato", label: "Contato" },
 ] as const;
 
+function LogoMark() {
+  return (
+    <span
+      aria-hidden
+      className="relative inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-[color:var(--gold)]/50 bg-[oklch(0.16_0.024_40)]"
+      style={{ boxShadow: "inset 0 0 0 2px rgba(245,183,28,0.15)" }}
+    >
+      <span className="font-display italic text-[color:var(--gold)] text-lg leading-none">B</span>
+      <span className="absolute -bottom-0.5 text-[8px] tracking-[0.2em] text-[color:var(--gold)]/80 uppercase">int</span>
+    </span>
+  );
+}
+
 export function Navbar() {
-  const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
-  const [dark, setDark] = useState(false);
+  const [dark, setDark] = useState(true);
   const pathname = useRouterState({ select: (s) => s.location.pathname });
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 40);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-
-  useEffect(() => {
-    const saved = localStorage.getItem("theme");
-    const prefersDark = saved ? saved === "dark" : window.matchMedia("(prefers-color-scheme: dark)").matches;
+    const saved = typeof localStorage !== "undefined" ? localStorage.getItem("theme") : null;
+    const prefersDark = saved ? saved === "dark" : true; // default dark like reference
     setDark(prefersDark);
     document.documentElement.classList.toggle("dark", prefersDark);
   }, []);
@@ -39,85 +44,82 @@ export function Navbar() {
 
   useEffect(() => setOpen(false), [pathname]);
 
-  const solid = scrolled || open || pathname !== "/";
-
   return (
-    <header
-      className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
-        solid
-          ? "bg-background/95 backdrop-blur-md shadow-md border-b border-border"
-          : "bg-transparent"
-      }`}
-    >
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 md:py-4">
-        <Link to="/" className="flex items-center gap-2 group">
-          <Flame className={`h-7 w-7 transition-colors ${solid ? "text-[color:var(--brand-red)]" : "text-[color:var(--gold)]"}`} />
-          <span
-            className={`font-display text-xl md:text-2xl font-bold tracking-wide ${
-              solid ? "text-foreground" : "text-white drop-shadow"
-            }`}
-          >
-            Brasas <span className="text-[color:var(--gold)]">do Interior</span>
+    <header className="fixed inset-x-0 top-0 z-50 border-b border-white/5 bg-[oklch(0.16_0.024_40)]/85 backdrop-blur-md">
+      <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-3">
+        <Link to="/" className="flex items-center gap-3">
+          <LogoMark />
+          <span className="hidden sm:block leading-tight">
+            <span className="block font-display text-lg text-white">
+              Brasas <em className="not-italic text-[color:var(--gold)] font-normal italic">do</em> Interior
+            </span>
+            <span className="block text-[10px] tracking-[0.3em] text-white/50 uppercase">Passira · Pernambuco</span>
           </span>
         </Link>
 
-        <nav className="hidden md:flex items-center gap-8">
+        <nav className="hidden md:flex items-center gap-9">
           {links.map((l) => {
             const active = pathname === l.to;
             return (
               <Link
                 key={l.to}
                 to={l.to}
-                className={`relative text-sm font-medium tracking-wide transition-colors ${
-                  solid ? "text-foreground/80 hover:text-foreground" : "text-white/90 hover:text-white"
-                } ${active ? "!text-[color:var(--gold)]" : ""}`}
+                className={`text-sm tracking-wide transition-colors ${
+                  active ? "text-[color:var(--gold)]" : "text-white/80 hover:text-white"
+                }`}
               >
                 {l.label}
-                <span
-                  className={`absolute -bottom-1 left-0 h-[2px] bg-[color:var(--gold)] transition-all ${
-                    active ? "w-full" : "w-0 group-hover:w-full"
-                  }`}
-                />
               </Link>
             );
           })}
+        </nav>
+
+        <div className="flex items-center gap-3">
           <button
             onClick={toggleDark}
             aria-label="Alternar tema"
-            className={`p-2 rounded-full transition-colors ${solid ? "hover:bg-muted" : "hover:bg-white/10"}`}
+            className="h-10 w-10 grid place-items-center rounded-full border border-white/15 text-white/80 hover:text-[color:var(--gold)] hover:border-[color:var(--gold)]/60 transition-colors"
           >
-            {dark ? <Sun className={`h-5 w-5 ${solid ? "text-foreground" : "text-white"}`} /> : <Moon className={`h-5 w-5 ${solid ? "text-foreground" : "text-white"}`} />}
+            {dark ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
           </button>
-        </nav>
-
-        <button
-          onClick={() => setOpen((o) => !o)}
-          className={`md:hidden p-2 rounded-md ${solid ? "text-foreground" : "text-white"}`}
-          aria-label="Menu"
-        >
-          {open ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-        </button>
+          <a
+            href={WHATSAPP_URL}
+            target="_blank"
+            rel="noreferrer"
+            className="btn-gold hidden sm:inline-flex"
+          >
+            <MessageCircle className="h-4 w-4" /> Pedir agora
+          </a>
+          <button
+            onClick={() => setOpen((o) => !o)}
+            className="md:hidden p-2 rounded-md text-white"
+            aria-label="Menu"
+          >
+            {open ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+          </button>
+        </div>
       </div>
 
       {open && (
-        <div className="md:hidden border-t border-border bg-background/98 backdrop-blur-md">
-          <nav className="flex flex-col px-4 py-4 gap-1">
+        <div className="md:hidden border-t border-white/10 bg-[oklch(0.16_0.024_40)]">
+          <nav className="flex flex-col px-5 py-4 gap-1">
             {links.map((l) => (
               <Link
                 key={l.to}
                 to={l.to}
-                className="px-3 py-3 rounded-md text-foreground hover:bg-muted font-medium"
+                className="px-3 py-3 rounded-md text-white/90 hover:bg-white/5 font-medium"
               >
                 {l.label}
               </Link>
             ))}
-            <button
-              onClick={toggleDark}
-              className="flex items-center gap-2 px-3 py-3 rounded-md text-foreground hover:bg-muted font-medium text-left"
+            <a
+              href={WHATSAPP_URL}
+              target="_blank"
+              rel="noreferrer"
+              className="mt-2 btn-gold justify-center"
             >
-              {dark ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
-              {dark ? "Modo claro" : "Modo escuro"}
-            </button>
+              <MessageCircle className="h-4 w-4" /> Pedir agora
+            </a>
           </nav>
         </div>
       )}

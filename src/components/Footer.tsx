@@ -1,61 +1,46 @@
 import { Link } from "@tanstack/react-router";
-import { Flame, MapPin, Phone, Clock, Instagram, Facebook } from "lucide-react";
+import { Instagram, Facebook } from "lucide-react";
 
 export function Footer() {
   return (
-    <footer className="bg-[oklch(0.14_0.01_40)] text-white/85 mt-20">
-      <div className="mx-auto max-w-7xl px-4 py-14 grid gap-10 md:grid-cols-4">
-        <div>
-          <div className="flex items-center gap-2 mb-4">
-            <Flame className="h-7 w-7 text-[color:var(--gold)]" />
-            <span className="font-display text-xl font-bold">
-              Brasas <span className="text-[color:var(--gold)]">do Interior</span>
-            </span>
+    <footer className="bg-[color:var(--cream)] border-t border-[color:var(--border)]">
+      <div className="mx-auto max-w-7xl px-6 md:px-10 py-10 flex flex-col md:flex-row items-center justify-between gap-6">
+        <div className="flex items-center gap-3">
+          <span
+            aria-hidden
+            className="h-10 w-10 rounded-full border border-[color:var(--wine)]/40 grid place-items-center bg-white"
+          >
+            <span className="font-display italic text-[color:var(--wine)]">B</span>
+          </span>
+          <div>
+            <p className="font-display text-[color:var(--cocoa)]">
+              Brasas <em className="italic text-[color:var(--wine)] font-normal">do</em> Interior
+            </p>
+            <p className="text-[10px] tracking-[0.3em] text-[color:var(--muted-foreground)] uppercase">Passira · Pernambuco</p>
           </div>
-          <p className="text-sm text-white/60 leading-relaxed">
-            Carnes na brasa, sabor autêntico do interior de Pernambuco. Ambiente familiar e atendimento acolhedor.
-          </p>
         </div>
 
-        <div>
-          <h3 className="font-display text-lg mb-4 text-[color:var(--gold)]">Contato</h3>
-          <ul className="space-y-3 text-sm">
-            <li className="flex gap-2"><MapPin className="h-4 w-4 mt-0.5 shrink-0 text-[color:var(--gold)]" /> Av. Alberto Bennig, Passira – PE</li>
-            <li className="flex gap-2"><Phone className="h-4 w-4 mt-0.5 shrink-0 text-[color:var(--gold)]" /> (81) 99549-7750</li>
-          </ul>
-        </div>
+        <nav className="flex flex-wrap items-center gap-6 text-sm text-[color:var(--cocoa)]/80">
+          <Link to="/cardapio" className="hover:text-[color:var(--wine)]">Cardápio</Link>
+          <Link to="/sobre" className="hover:text-[color:var(--wine)]">Nossa casa</Link>
+          <Link to="/galeria" className="hover:text-[color:var(--wine)]">Galeria</Link>
+          <Link to="/contato" className="hover:text-[color:var(--wine)]">Contato</Link>
+        </nav>
 
-        <div>
-          <h3 className="font-display text-lg mb-4 text-[color:var(--gold)]">Horários</h3>
-          <ul className="space-y-2 text-sm">
-            <li className="flex gap-2"><Clock className="h-4 w-4 mt-0.5 shrink-0 text-[color:var(--gold)]" /> Seg – Sex: 10h às 23h</li>
-            <li className="flex gap-2"><Clock className="h-4 w-4 mt-0.5 shrink-0 text-[color:var(--gold)]" /> Sáb – Dom: 10h às 00h</li>
-          </ul>
-        </div>
-
-        <div>
-          <h3 className="font-display text-lg mb-4 text-[color:var(--gold)]">Navegue</h3>
-          <ul className="grid grid-cols-2 gap-2 text-sm">
-            <li><Link to="/" className="hover:text-[color:var(--gold)]">Início</Link></li>
-            <li><Link to="/cardapio" className="hover:text-[color:var(--gold)]">Cardápio</Link></li>
-            <li><Link to="/galeria" className="hover:text-[color:var(--gold)]">Galeria</Link></li>
-            <li><Link to="/sobre" className="hover:text-[color:var(--gold)]">Sobre</Link></li>
-            <li><Link to="/contato" className="hover:text-[color:var(--gold)]">Contato</Link></li>
-          </ul>
-          <div className="flex gap-3 mt-5">
-            <a href="https://instagram.com" target="_blank" rel="noreferrer" aria-label="Instagram" className="p-2 rounded-full bg-white/10 hover:bg-[color:var(--gold)] hover:text-black transition-colors">
-              <Instagram className="h-4 w-4" />
-            </a>
-            <a href="https://facebook.com" target="_blank" rel="noreferrer" aria-label="Facebook" className="p-2 rounded-full bg-white/10 hover:bg-[color:var(--gold)] hover:text-black transition-colors">
-              <Facebook className="h-4 w-4" />
-            </a>
-          </div>
+        <div className="flex items-center gap-4">
+          <a href="https://instagram.com" target="_blank" rel="noreferrer" aria-label="Instagram" className="text-[color:var(--cocoa)]/70 hover:text-[color:var(--wine)]">
+            <Instagram className="h-4 w-4" />
+          </a>
+          <a href="https://facebook.com" target="_blank" rel="noreferrer" aria-label="Facebook" className="text-[color:var(--cocoa)]/70 hover:text-[color:var(--wine)]">
+            <Facebook className="h-4 w-4" />
+          </a>
         </div>
       </div>
-      <div className="border-t border-white/10">
-        <p className="mx-auto max-w-7xl px-4 py-5 text-xs text-white/50 text-center">
-          © {new Date().getFullYear()} Brasas do Interior. Todos os direitos reservados.
-        </p>
+      <div className="border-t border-[color:var(--border)]">
+        <div className="mx-auto max-w-7xl px-6 md:px-10 py-5 flex flex-col md:flex-row items-center justify-between gap-2 text-xs text-[color:var(--muted-foreground)]">
+          <p className="italic font-display">O verdadeiro sabor da brasa.</p>
+          <p>© {new Date().getFullYear()} Brasas do Interior</p>
+        </div>
       </div>
     </footer>
   );
