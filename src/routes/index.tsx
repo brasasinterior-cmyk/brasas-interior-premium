@@ -1,22 +1,17 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useEffect, useState } from "react";
-import { Flame, Beer, Users, Car, Award, ArrowRight, Star, ChevronLeft, ChevronRight } from "lucide-react";
+import { Flame, ChefHat, Sparkles, ShoppingBag, MapPin, ArrowRight, MessageCircle } from "lucide-react";
 import { Layout } from "@/components/Layout";
 import { Reveal } from "@/components/Reveal";
 import { WHATSAPP_URL } from "@/components/WhatsAppFloat";
 import hero from "@/assets/hero-churrasqueira.jpg";
-import g1 from "@/assets/gallery-1.jpg";
-import g2 from "@/assets/gallery-2.jpg";
-import g3 from "@/assets/gallery-3.jpg";
-import g5 from "@/assets/gallery-5.jpg";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Brasas do Interior — Churrascaria em Passira, PE" },
-      { name: "description", content: "Carnes na brasa, petiscos, cerveja gelada e ambiente familiar no coração de Passira, Pernambuco." },
-      { property: "og:title", content: "Brasas do Interior — Churrascaria em Passira, PE" },
-      { property: "og:description", content: "Carnes na brasa, petiscos e sabor autêntico do interior pernambucano." },
+      { title: "Brasas do Interior — O verdadeiro sabor da brasa em Passira, PE" },
+      { name: "description", content: "Carne no ponto, lenha queimando devagar e o tempero do interior de Pernambuco. Cardápio, promoções e reservas em Passira." },
+      { property: "og:title", content: "Brasas do Interior — O verdadeiro sabor da brasa" },
+      { property: "og:description", content: "Restaurante e churrascaria em Passira, PE. Carnes na brasa, petiscos e ambiente acolhedor." },
     ],
     links: [{ rel: "canonical", href: "/" }],
   }),
@@ -24,201 +19,205 @@ export const Route = createFileRoute("/")({
 });
 
 const differentials = [
-  { icon: Flame, title: "Carnes na Brasa", desc: "Cortes nobres preparados no ponto certo em brasa real." },
-  { icon: Beer, title: "Cerveja Gelada", desc: "A temperatura ideal para acompanhar a sua refeição." },
-  { icon: Users, title: "Ambiente Familiar", desc: "Espaço acolhedor para toda a família." },
-  { icon: Car, title: "Estacionamento", desc: "Estacionamento próprio para maior comodidade." },
-  { icon: Award, title: "Atendimento de Qualidade", desc: "Nossa equipe prepara tudo com carinho." },
-];
-
-const promos = [
-  { title: "Terça do Petisco", subtitle: "Carne de sol na brasa com farofa e vinagrete", price: "R$ 39,90", img: g5 },
-  { title: "Combo Família", subtitle: "Picanha argentina P/4 com todos os acompanhamentos", price: "R$ 179,90", img: g2 },
-  { title: "Happy Hour", subtitle: "Chopp gelado e petiscos de dar água na boca", price: "A partir de R$ 10", img: g1 },
+  { icon: Flame, title: "Carnes na brasa", sub: "Feitas na hora" },
+  { icon: ChefHat, title: "Tempero de casa", sub: "Receitas do interior" },
+  { icon: Sparkles, title: "Ambiente acolhedor", sub: "Para ficar à vontade" },
+  { icon: ShoppingBag, title: "Peça fácil", sub: "Direto pelo WhatsApp" },
+  { icon: MapPin, title: "No coração de Passira", sub: "Avenida Alberto Bennig" },
 ];
 
 function Home() {
-  const [slide, setSlide] = useState(0);
-
-  useEffect(() => {
-    const t = setInterval(() => setSlide((s) => (s + 1) % promos.length), 5000);
-    return () => clearInterval(t);
-  }, []);
-
   return (
     <Layout>
       {/* HERO */}
-      <section className="relative h-screen min-h-[640px] w-full overflow-hidden">
-        <img src={hero} alt="Churrasqueira com carnes na brasa" className="absolute inset-0 h-full w-full object-cover" width={1920} height={1200} />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/60 to-black/85" />
-        <div className="relative z-10 flex h-full flex-col items-center justify-center text-center px-4">
-          <p className="animate-fade-up text-[color:var(--gold)] tracking-[0.35em] text-xs md:text-sm uppercase mb-4">Passira · Pernambuco</p>
-          <h1 className="animate-fade-up font-display text-5xl md:text-7xl lg:text-8xl font-bold text-white leading-none">
-            Brasas <span className="text-gradient-gold">do Interior</span>
+      <section className="relative bg-cocoa-rays pt-28 pb-16 md:pt-32 md:pb-24 overflow-hidden">
+        <img
+          src={hero}
+          alt=""
+          aria-hidden
+          className="pointer-events-none absolute right-[-10%] top-1/2 -translate-y-1/2 h-[85%] w-[65%] object-cover opacity-35 mix-blend-screen [mask-image:radial-gradient(50%_60%_at_60%_50%,black,transparent_75%)]"
+        />
+        <div className="relative mx-auto max-w-7xl px-6 md:px-10">
+          <p className="eyebrow animate-fade-up">Passira, Pernambuco</p>
+
+          <h1 className="animate-fade-up font-display text-white text-[clamp(3rem,10vw,8.5rem)] leading-[0.95] mt-6 max-w-5xl" style={{ animationDelay: ".05s", fontWeight: 400 }}>
+            O verdadeiro{" "}
+            <em className="serif-italic-gold not-italic">
+              <span className="italic">sabor</span>
+            </em>{" "}
+            da brasa.
           </h1>
-          <p className="animate-fade-up mt-6 text-white/85 max-w-xl text-base md:text-lg" style={{ animationDelay: "0.2s" }}>
-            Carnes na brasa, petiscos e sabor autêntico do sertão. Um pedaço do interior pernambucano na sua mesa.
-          </p>
-          <div className="animate-fade-up mt-9 flex flex-col sm:flex-row gap-3" style={{ animationDelay: "0.4s" }}>
-            <Link
-              to="/cardapio"
-              className="group inline-flex items-center justify-center gap-2 bg-[color:var(--brand-red)] px-8 py-3.5 text-sm font-semibold uppercase tracking-wider text-white rounded-md hover:bg-[color:var(--gold)] hover:text-black transition-all"
-            >
-              Ver Cardápio <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-            </Link>
-            <a
-              href={WHATSAPP_URL}
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex items-center justify-center gap-2 border-2 border-white/40 hover:border-[color:var(--gold)] px-8 py-3.5 text-sm font-semibold uppercase tracking-wider text-white hover:text-[color:var(--gold)] rounded-md transition-all"
-            >
-              Fazer Reserva
-            </a>
-          </div>
-        </div>
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 text-white/60 text-xs uppercase tracking-widest animate-bounce">
-          Role para descobrir
-        </div>
-      </section>
 
-      {/* DIFFERENTIALS */}
-      <section className="py-20 md:py-28 bg-background">
-        <div className="mx-auto max-w-7xl px-4">
-          <Reveal className="text-center max-w-2xl mx-auto">
-            <p className="text-[color:var(--gold)] uppercase tracking-[0.3em] text-xs mb-3">Nossos Diferenciais</p>
-            <h2 className="font-display text-4xl md:text-5xl font-bold text-foreground">Uma experiência acolhedora</h2>
-            <p className="mt-4 text-muted-foreground">
-              Cada detalhe pensado para que sua visita seja inesquecível.
+          <div className="mt-10 grid gap-10 md:grid-cols-[minmax(0,1fr)_auto_minmax(0,20rem)] md:items-end animate-fade-up" style={{ animationDelay: ".15s" }}>
+            <p className="text-white/75 max-w-md text-base md:text-lg leading-relaxed">
+              Carne no ponto, lenha queimando devagar e o tempero que a gente aprendeu no interior.
             </p>
-          </Reveal>
-          <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-5">
-            {differentials.map((d, i) => (
-              <Reveal key={d.title} delay={i * 80}>
-                <div className="card-lift h-full bg-card border border-border rounded-xl p-6 text-center">
-                  <div className="mx-auto h-14 w-14 rounded-full bg-[color:var(--brand-red)]/10 flex items-center justify-center text-[color:var(--brand-red)]">
-                    <d.icon className="h-7 w-7" />
-                  </div>
-                  <h3 className="mt-4 font-display text-lg text-foreground">{d.title}</h3>
-                  <p className="mt-2 text-sm text-muted-foreground">{d.desc}</p>
-                </div>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
 
-      {/* PROMOÇÕES SLIDER */}
-      <section className="py-20 md:py-28 bg-[oklch(0.14_0.01_40)] text-white">
-        <div className="mx-auto max-w-7xl px-4">
-          <Reveal className="text-center max-w-2xl mx-auto mb-12">
-            <p className="text-[color:var(--gold)] uppercase tracking-[0.3em] text-xs mb-3">Promoções</p>
-            <h2 className="font-display text-4xl md:text-5xl font-bold">Ofertas em destaque</h2>
-          </Reveal>
-          <div className="relative overflow-hidden rounded-2xl">
-            <div className="flex transition-transform duration-700 ease-out" style={{ transform: `translateX(-${slide * 100}%)` }}>
-              {promos.map((p) => (
-                <div key={p.title} className="w-full shrink-0 relative aspect-[16/9] md:aspect-[21/9]">
-                  <img src={p.img} alt={p.title} className="absolute inset-0 h-full w-full object-cover" loading="lazy" width={1024} height={1024} />
-                  <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/50 to-transparent" />
-                  <div className="relative z-10 h-full flex flex-col justify-center px-8 md:px-16 max-w-2xl">
-                    <p className="text-[color:var(--gold)] uppercase text-xs tracking-widest mb-3">Oferta especial</p>
-                    <h3 className="font-display text-3xl md:text-5xl font-bold">{p.title}</h3>
-                    <p className="mt-3 text-white/80 md:text-lg">{p.subtitle}</p>
-                    <p className="mt-5 font-display text-3xl md:text-4xl text-[color:var(--gold)]">{p.price}</p>
-                    <a
-                      href={WHATSAPP_URL}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="mt-6 inline-flex w-fit items-center gap-2 bg-[color:var(--brand-red)] hover:bg-[color:var(--gold)] hover:text-black transition-colors px-6 py-3 rounded-md text-sm font-semibold uppercase tracking-wider"
-                    >
-                      Pedir pelo WhatsApp
-                    </a>
-                  </div>
-                </div>
-              ))}
-            </div>
-            <button
-              onClick={() => setSlide((s) => (s - 1 + promos.length) % promos.length)}
-              className="absolute left-4 top-1/2 -translate-y-1/2 h-11 w-11 rounded-full bg-white/10 hover:bg-[color:var(--gold)] hover:text-black flex items-center justify-center transition-colors"
-              aria-label="Anterior"
-            >
-              <ChevronLeft className="h-5 w-5" />
-            </button>
-            <button
-              onClick={() => setSlide((s) => (s + 1) % promos.length)}
-              className="absolute right-4 top-1/2 -translate-y-1/2 h-11 w-11 rounded-full bg-white/10 hover:bg-[color:var(--gold)] hover:text-black flex items-center justify-center transition-colors"
-              aria-label="Próximo"
-            >
-              <ChevronRight className="h-5 w-5" />
-            </button>
-            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
-              {promos.map((_, i) => (
-                <button
-                  key={i}
-                  onClick={() => setSlide(i)}
-                  aria-label={`Ir para slide ${i + 1}`}
-                  className={`h-2 rounded-full transition-all ${i === slide ? "w-8 bg-[color:var(--gold)]" : "w-2 bg-white/40"}`}
-                />
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* FEATURED / GALLERY PREVIEW */}
-      <section className="py-20 md:py-28 bg-background">
-        <div className="mx-auto max-w-7xl px-4">
-          <Reveal className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-12">
-            <div className="max-w-xl">
-              <p className="text-[color:var(--gold)] uppercase tracking-[0.3em] text-xs mb-3">Nossa Cozinha</p>
-              <h2 className="font-display text-4xl md:text-5xl font-bold text-foreground">
-                Sabores que contam histórias
-              </h2>
-            </div>
-            <Link to="/galeria" className="text-sm text-[color:var(--brand-red)] hover:text-[color:var(--gold)] font-semibold uppercase tracking-wider inline-flex items-center gap-2">
-              Ver galeria completa <ArrowRight className="h-4 w-4" />
-            </Link>
-          </Reveal>
-
-          <div className="grid gap-4 md:grid-cols-3">
-            {[
-              { src: g2, title: "Cortes Nobres", h: "aspect-[4/5]" },
-              { src: g5, title: "Petiscos", h: "aspect-square md:aspect-[4/5] md:mt-16" },
-              { src: g3, title: "Ambiente", h: "aspect-[4/5]" },
-            ].map((it, i) => (
-              <Reveal key={it.title} delay={i * 100}>
-                <div className={`relative overflow-hidden rounded-xl group ${it.h}`}>
-                  <img src={it.src} alt={it.title} className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-110" loading="lazy" width={1024} height={1024} />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent" />
-                  <div className="absolute inset-x-0 bottom-0 p-6">
-                    <p className="text-[color:var(--gold)] text-xs uppercase tracking-widest">Destaque</p>
-                    <h3 className="font-display text-2xl text-white mt-1">{it.title}</h3>
-                  </div>
-                </div>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* CTA */}
-      <section className="py-20 md:py-24 bg-[color:var(--brand-red)] text-white text-center">
-        <div className="mx-auto max-w-3xl px-4">
-          <Reveal>
-            <Star className="h-8 w-8 mx-auto text-[color:var(--gold)] mb-4" />
-            <h2 className="font-display text-3xl md:text-5xl font-bold">Venha viver essa experiência</h2>
-            <p className="mt-4 text-white/85">
-              Reserve sua mesa ou peça pelo WhatsApp. Estamos esperando por você.
-            </p>
-            <div className="mt-8 flex flex-col sm:flex-row justify-center gap-3">
-              <a href={WHATSAPP_URL} target="_blank" rel="noreferrer" className="bg-white text-[color:var(--brand-red)] px-8 py-3.5 rounded-md font-semibold uppercase tracking-wider text-sm hover:bg-[color:var(--gold)] hover:text-black transition-colors">
-                Fazer Pedido
+            <div className="flex flex-wrap items-center gap-3">
+              <Link to="/cardapio" className="btn-gold group">
+                Ver o cardápio
+                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+              </Link>
+              <a href={WHATSAPP_URL} target="_blank" rel="noreferrer" className="btn-ghost-light">
+                <MessageCircle className="h-4 w-4" /> Pedir pelo WhatsApp
               </a>
-              <Link to="/contato" className="border-2 border-white/60 hover:border-[color:var(--gold)] hover:text-[color:var(--gold)] px-8 py-3.5 rounded-md font-semibold uppercase tracking-wider text-sm transition-colors">
-                Como Chegar
+            </div>
+
+            <div className="border-l border-[color:var(--gold)]/50 pl-5 hidden md:block">
+              <h3 className="font-display text-white text-lg">Da lenha para a mesa</h3>
+              <p className="text-white/60 text-sm mt-1 leading-relaxed">
+                Um pedaço do nosso interior em cada prato.
+              </p>
+            </div>
+          </div>
+
+          <p className="mt-14 hidden md:block text-white/40 text-[11px] tracking-[0.35em] uppercase">
+            — Desça para escolher
+          </p>
+        </div>
+      </section>
+
+      {/* DIFFERENTIALS STRIP */}
+      <section className="diff-strip border-y border-[color:var(--border)]">
+        <div className="mx-auto max-w-7xl grid grid-cols-2 md:grid-cols-5 divide-x divide-[color:var(--border)]">
+          {differentials.map((d) => (
+            <div key={d.title} className="flex items-center gap-3 px-5 py-6">
+              <span className="h-10 w-10 rounded-full bg-[color:var(--gold)]/15 grid place-items-center text-[color:var(--wine)]">
+                <d.icon className="h-4 w-4" />
+              </span>
+              <div>
+                <p className="text-[13px] font-medium text-[color:var(--cocoa)]">{d.title}</p>
+                <p className="text-[11px] text-[color:var(--muted-foreground)]">{d.sub}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* ESCOLHA SEU MOMENTO */}
+      <section className="bg-[color:var(--cream)] py-24 md:py-32">
+        <div className="mx-auto max-w-7xl px-6 md:px-10 grid md:grid-cols-2 gap-12 items-end">
+          <div>
+            <p className="eyebrow text-[color:var(--wine)] before:bg-[color:var(--wine)]">Cardápio da casa</p>
+            <h2 className="mt-6 font-display text-[color:var(--cocoa)] text-[clamp(2.5rem,6vw,4.5rem)] leading-[1] max-w-md" style={{ fontWeight: 400 }}>
+              Escolha seu{" "}
+              <em className="serif-italic-wine italic">momento.</em>
+            </h2>
+          </div>
+          <div>
+            <p className="text-[color:var(--muted-foreground)] max-w-md md:ml-auto leading-relaxed">
+              Comece pela brasa, siga pelo seu apetite. Tudo preparado para você pedir sem pressa e sem dúvida.
+            </p>
+            <div className="mt-8 md:text-right">
+              <Link to="/cardapio" className="inline-flex items-center gap-2 text-[color:var(--wine)] font-medium border-b border-[color:var(--wine)]/40 pb-1 hover:border-[color:var(--wine)]">
+                Ver o cardápio completo <ArrowRight className="h-4 w-4" />
               </Link>
             </div>
-          </Reveal>
+          </div>
+        </div>
+
+        {/* Featured highlights list */}
+        <div className="mx-auto max-w-7xl px-6 md:px-10 mt-16 grid gap-6 md:grid-cols-3">
+          {[
+            { name: "Picanha argentina", tag: "Favorito", price: "R$ 89,90", desc: "Arroz, feijão tropeiro, macarrão, batata maionese, farofa e vinagrete." },
+            { name: "Carne de sol na brasa", tag: "Da casa", price: "R$ 64,90", desc: "Servida com todos os acompanhamentos do interior." },
+            { name: "Costela no bafo", tag: "Para a mesa", price: "R$ 64,90", desc: "Cozida lentamente, desmancha no garfo." },
+          ].map((it) => (
+            <Reveal key={it.name}>
+              <article className="card-lift bg-white rounded-2xl border border-[color:var(--border)] p-6 h-full">
+                <div className="flex items-start justify-between gap-3">
+                  <span className="h-9 w-9 rounded-full bg-[color:var(--gold)]/20 grid place-items-center text-[color:var(--wine)]">
+                    <Flame className="h-4 w-4" />
+                  </span>
+                  <span className="text-[color:var(--wine)] font-mono text-sm">{it.price}</span>
+                </div>
+                <h3 className="mt-4 font-display text-2xl text-[color:var(--cocoa)]">{it.name}</h3>
+                <span className="mt-2 inline-block bg-[color:var(--gold)]/20 text-[color:var(--cocoa)] text-[10px] uppercase tracking-[0.2em] px-2 py-1 rounded">{it.tag}</span>
+                <p className="mt-3 text-sm text-[color:var(--muted-foreground)] leading-relaxed">{it.desc}</p>
+                <div className="mt-6 flex items-center justify-between">
+                  <span className="text-xs text-[color:var(--muted-foreground)] tracking-wide">P/2 · P/4</span>
+                  <a href={WHATSAPP_URL} target="_blank" rel="noreferrer" className="text-[color:var(--wine)] text-sm inline-flex items-center gap-1 border-b border-[color:var(--wine)]/40 hover:border-[color:var(--wine)]">
+                    Pedir <ArrowRight className="h-3 w-3" />
+                  </a>
+                </div>
+              </article>
+            </Reveal>
+          ))}
+        </div>
+      </section>
+
+      {/* O JEITO BRASAS — deep wine section */}
+      <section className="bg-[color:var(--wine)] text-white py-24 md:py-32">
+        <div className="mx-auto max-w-7xl px-6 md:px-10 grid md:grid-cols-2 gap-12">
+          <div>
+            <p className="text-[color:var(--gold)] tracking-[0.32em] text-[11px] uppercase mb-8">O jeito Brasas</p>
+            <h2 className="font-display text-[clamp(2.5rem,6vw,4.5rem)] leading-[1]" style={{ fontWeight: 400 }}>
+              Aqui, o tempo{" "}
+              <em className="italic text-[color:var(--gold)] font-normal">tem outro gosto.</em>
+            </h2>
+          </div>
+          <div>
+            <p className="text-white/85 leading-relaxed max-w-md">
+              A gente acredita que boa comida começa antes do prato: na conversa, no cheiro da lenha e no cuidado de quem conhece cada corte. Em Passira, a mesa é extensão da casa.
+            </p>
+            <div className="mt-10 grid grid-cols-2 gap-8 pt-8 border-t border-white/20">
+              <div>
+                <h4 className="font-display italic text-[color:var(--gold)] text-2xl">Desde cedo</h4>
+                <p className="text-white/70 text-sm mt-1">Almoço de segunda a domingo</p>
+              </div>
+              <div>
+                <h4 className="font-display italic text-[color:var(--gold)] text-2xl">Na brasa</h4>
+                <p className="text-white/70 text-sm mt-1">O sabor que fica na memória</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* VISITE — cream */}
+      <section className="bg-[color:var(--cream)] py-24 md:py-32">
+        <div className="mx-auto max-w-7xl px-6 md:px-10 grid md:grid-cols-2 gap-12 items-start">
+          <div>
+            <p className="eyebrow text-[color:var(--wine)] before:bg-[color:var(--wine)]">Visite a gente</p>
+            <h2 className="mt-6 font-display text-[color:var(--cocoa)] text-[clamp(2.5rem,6vw,4.5rem)] leading-[1] max-w-sm" style={{ fontWeight: 400 }}>
+              A mesa está{" "}
+              <em className="serif-italic-wine italic">posta.</em>
+            </h2>
+            <p className="mt-6 text-[color:var(--muted-foreground)] max-w-md leading-relaxed">
+              Chegue com fome. A saída da cidade passa por aqui.
+            </p>
+            <a href={WHATSAPP_URL} target="_blank" rel="noreferrer" className="btn-wine mt-8">
+              <MessageCircle className="h-4 w-4" /> Falar no WhatsApp
+            </a>
+          </div>
+
+          <div className="grid grid-cols-2 gap-0 rounded-2xl overflow-hidden border border-[color:var(--border)] bg-white">
+            <div className="p-6 border-r border-b border-[color:var(--border)]">
+              <MapPin className="h-4 w-4 text-[color:var(--wine)]" />
+              <p className="mt-8 text-[10px] tracking-[0.3em] uppercase text-[color:var(--muted-foreground)]">Endereço</p>
+              <p className="mt-2 font-display text-[color:var(--cocoa)] text-lg leading-tight">Avenida Alberto Bennig</p>
+              <p className="text-sm text-[color:var(--muted-foreground)]">Passira, Pernambuco</p>
+            </div>
+            <div className="p-6 border-b border-[color:var(--border)]">
+              <MessageCircle className="h-4 w-4 text-[color:var(--wine)]" />
+              <p className="mt-8 text-[10px] tracking-[0.3em] uppercase text-[color:var(--muted-foreground)]">Telefone</p>
+              <p className="mt-2 font-display text-[color:var(--cocoa)] text-lg leading-tight">(81) 99549-7750</p>
+              <a href="tel:+5581995497750" className="text-sm text-[color:var(--wine)] hover:underline">Ligar agora</a>
+            </div>
+            <div className="p-6 col-span-2">
+              <p className="text-[10px] tracking-[0.3em] uppercase text-[color:var(--muted-foreground)]">Horário de funcionamento</p>
+              <div className="mt-4 grid grid-cols-2 gap-4">
+                <div>
+                  <p className="font-medium text-[color:var(--cocoa)]">Segunda a sexta</p>
+                  <p className="text-sm text-[color:var(--muted-foreground)]">10:00 às 23:00</p>
+                </div>
+                <div>
+                  <p className="font-medium text-[color:var(--cocoa)]">Sábado e domingo</p>
+                  <p className="text-sm text-[color:var(--muted-foreground)]">10:00 às 00:00</p>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
     </Layout>
