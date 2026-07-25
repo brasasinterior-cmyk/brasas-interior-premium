@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Link, useRouterState } from "@tanstack/react-router";
 import { Menu, X, Moon, Sun, MessageCircle } from "lucide-react";
 import { WHATSAPP_URL } from "./WhatsAppFloat";
+import logo from "@/assets/brasa-do-interior-logo.jpg.asset.json";
 
 const links = [
   { to: "/cardapio", label: "Cardápio" },
@@ -12,14 +13,11 @@ const links = [
 
 function LogoMark() {
   return (
-    <span
-      aria-hidden
-      className="relative inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-[color:var(--gold)]/50 bg-[oklch(0.16_0.024_40)]"
-      style={{ boxShadow: "inset 0 0 0 2px rgba(245,183,28,0.15)" }}
-    >
-      <span className="font-display italic text-[color:var(--gold)] text-lg leading-none">B</span>
-      <span className="absolute -bottom-0.5 text-[8px] tracking-[0.2em] text-[color:var(--gold)]/80 uppercase">int</span>
-    </span>
+    <img
+      src={logo.url}
+      alt="Brasa do Interior - Churrascaria & Petiscaria"
+      className="h-11 w-11 shrink-0 rounded-full object-cover border border-[color:var(--gold)]/50"
+    />
   );
 }
 

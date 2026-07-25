@@ -1,20 +1,20 @@
 import { Link } from "@tanstack/react-router";
 import { Instagram, Facebook } from "lucide-react";
+import logo from "@/assets/brasa-do-interior-logo.jpg.asset.json";
 
 export function Footer() {
   return (
     <footer className="bg-[color:var(--cream)] border-t border-[color:var(--border)]">
       <div className="mx-auto max-w-7xl px-6 md:px-10 py-10 flex flex-col md:flex-row items-center justify-between gap-6">
         <div className="flex items-center gap-3">
-          <span
-            aria-hidden
-            className="h-10 w-10 rounded-full border border-[color:var(--wine)]/40 grid place-items-center bg-white"
-          >
-            <span className="font-display italic text-[color:var(--wine)]">B</span>
-          </span>
+          <img
+            src={logo.url}
+            alt="Brasa do Interior - Churrascaria & Petiscaria"
+            className="h-12 w-12 rounded-full object-cover border border-[color:var(--wine)]/30"
+          />
           <div>
             <p className="font-display text-[color:var(--cocoa)]">
-              Brasas <em className="italic text-[color:var(--wine)] font-normal">do</em> Interior
+              Brasa <em className="italic text-[color:var(--wine)] font-normal">do</em> Interior
             </p>
             <p className="text-[10px] tracking-[0.3em] text-[color:var(--muted-foreground)] uppercase">Passira · Pernambuco</p>
           </div>
