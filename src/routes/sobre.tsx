@@ -32,7 +32,7 @@ function Sobre() {
       <section className="py-20 md:py-28 bg-background">
         <div className="mx-auto max-w-6xl px-4 grid gap-12 md:grid-cols-2 items-center">
           <Reveal>
-            <img src="/public/fachada-do-brasa-do-interior-passira.jpg" alt="Fachada da churrascaria Brasa do Interior em Passira" className="rounded-lg shadow-md w-full object-cover" />
+            <img src="/fachada-do-brasa-do-interior-passira.jpg" alt="Fachada da churrascaria Brasa do Interior em Passira" className="rounded-lg shadow-md w-full object-cover" />
           </Reveal>
           <Reveal delay={150}>
             <p className="text-[color:var(--gold)] uppercase tracking-[0.3em] text-xs mb-3">Nossa essência</p>
