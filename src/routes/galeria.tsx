@@ -27,6 +27,8 @@ export const Route = createFileRoute("/galeria")({
 });
 
 const photos = [
+  { src: fachada.url, alt: "Fachada da Brasa do Interior em Passira" },
+  { src: picanha.url, alt: "Picanha na brasa fatiada" },
   { src: hero, alt: "Carnes na brasa" },
   { src: g2, alt: "Picanha grelhada em fatias" },
   { src: g1, alt: "Prato de carne de sol com acompanhamentos" },
