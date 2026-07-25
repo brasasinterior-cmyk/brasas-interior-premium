@@ -3,13 +3,12 @@ import { useEffect, useState } from "react";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
 import { Layout } from "@/components/Layout";
 import { Reveal } from "@/components/Reveal";
-import fachada from "@/assets/fachada.jpg.asset.json";
-import picanha from "@/assets/picanha.jpg.asset.json";
-import premio from "@/assets/premio.jpg.asset.json";
-import drink from "public/caldinho-macaxeira";
-import carneChapa from "@/assets/carne-chapa.jpg.asset.json";
-import cebola from "@/assets/cebola-recheada.jpg.asset.json";
-
+const fachada = "/fachada-do-brasa-do-interior.jpg";
+const picanha = "/picanha.jpg";
+const premio = "/premio-destaque.jpg";
+const drink = "/caldinho-macaxeira.jpg";
+const carneChapa = "/carne-na-chapa-quente.jpg";
+const cebola = "/cebola-recheada.jpg";
 export const Route = createFileRoute("/galeria")({
   head: () => ({
     meta: [
