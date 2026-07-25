@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { Link, useRouterState } from "@tanstack/react-router";
 import { Menu, X, Moon, Sun, MessageCircle } from "lucide-react";
 import { WHATSAPP_URL } from "./WhatsAppFloat";
-import logo from "@/assets/brasa-do-interior-logo.jpg";
 
 const links = [
   { to: "/cardapio", label: "Cardápio" },
@@ -109,17 +108,18 @@ export function Navbar() {
               >
                 {l.label}
               </Link>
-            ))}
-            <a
-              href={WHATSAPP_URL}
-              target="_blank"
-              rel="noreferrer"
-              className="mt-2 btn-gold justify-center"
-            >
-              <MessageCircle className="h-4 w-4" /> Pedir agora
-            </a>
-          </nav>
-        </div>
+            );
+          })}
+          <a
+            href={WHATSAPP_URL}
+            target="_blank"
+            rel="noreferrer"
+            className="mt-2 btn-gold justify-center"
+          >
+            <MessageCircle className="h-4 w-4" /> Pedir agora
+          </a>
+        </nav>
+      </div>
       )}
     </header>
   );
