@@ -25,14 +25,11 @@ export const Route = createFileRoute("/galeria")({
 
 const photos = [
   { src: fachada.url, alt: "Fachada da Brasa do Interior em Passira" },
+  { src: carneChapa.url, alt: "Carne na chapa quente" },
+  { src: cebola.url, alt: "Cebola recheada com queijo e torradas" },
+  { src: drink.url, alt: "Drink gelado com limão" },
+  { src: premio.url, alt: "Prêmio Melhor Restaurante — Destaques do Agreste Passira-PE" },
   { src: picanha.url, alt: "Picanha na brasa fatiada" },
-  { src: hero, alt: "Carnes na brasa" },
-  { src: g2, alt: "Picanha grelhada em fatias" },
-  { src: g1, alt: "Prato de carne de sol com acompanhamentos" },
-  { src: g5, alt: "Tábua de petiscos" },
-  { src: g3, alt: "Ambiente acolhedor" },
-  { src: g4, alt: "Cerveja gelada" },
-  { src: g6, alt: "Petit gateau de chocolate" },
 ];
 
 function Galeria() {
