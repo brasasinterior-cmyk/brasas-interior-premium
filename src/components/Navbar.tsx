@@ -108,18 +108,17 @@ export function Navbar() {
               >
                 {l.label}
               </Link>
-            );
-          })}
-          <a
-            href={WHATSAPP_URL}
-            target="_blank"
-            rel="noreferrer"
-            className="mt-2 btn-gold justify-center"
-          >
-            <MessageCircle className="h-4 w-4" /> Pedir agora
-          </a>
-        </nav>
-      </div>
+            ))}
+            <a
+              href={WHATSAPP_URL}
+              target="_blank"
+              rel="noreferrer"
+              className="mt-2 btn-gold justify-center"
+            >
+              <MessageCircle className="h-4 w-4" /> Pedir agora
+            </a>
+          </nav>
+        </div>
       )}
     </header>
   );
