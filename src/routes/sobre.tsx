@@ -34,7 +34,9 @@ function Sobre() {
       <section className="py-20 md:py-28 bg-background">
         <div className="mx-auto max-w-6xl px-4 grid gap-12 md:grid-cols-2 items-center">
           <Reveal>
-            <img src={fachada.url} alt="Fachada da churrascaria Brasa do Interior em Passira" className="rounded-2xl shadow-xl w-full object-cover" loading="lazy" width={864} height={1536} />
+           // Exemplo no React / HTML:
+<img src="/brasa-do-interior-logo.jpg" alt="Logo Brasa" />
+<img src="/fachada.jpg" alt="Fachada da churrascaria Brasa do Interior em Passira" />
           </Reveal>
           <Reveal delay={150}>
             <p className="text-[color:var(--gold)] uppercase tracking-[0.3em] text-xs mb-3">Nossa essência</p>
