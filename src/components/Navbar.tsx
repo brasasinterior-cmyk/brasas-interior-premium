@@ -14,7 +14,7 @@ const links = [
 function LogoMark() {
   return (
     <img
-      src={logo}
+      src="/brasa-do-interior-logo.jpg"
       alt="Brasa do Interior - Churrascaria & Petiscaria"
       className="h-11 w-11 shrink-0 rounded-full object-cover border border-[color:var(--gold)]/50"
     />
