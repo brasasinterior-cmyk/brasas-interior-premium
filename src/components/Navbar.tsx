@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { Link, useRouterState } from "@tanstack/react-router";
 import { Menu, X, Moon, Sun, MessageCircle } from "lucide-react";
 import { WHATSAPP_URL } from "./WhatsAppFloat";
-import logo from "@/assets/brasa-do-interior-logo.jpg";
 
 const links = [
   { to: "/cardapio", label: "Cardápio" },
