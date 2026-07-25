@@ -1,6 +1,5 @@
 import { Link } from "@tanstack/react-router";
 import { Instagram, Facebook } from "lucide-react";
-import logo from "@/assets/brasa-do-interior-logo.jpg.asset.json";
 
 export function Footer() {
   return (
@@ -8,7 +7,7 @@ export function Footer() {
       <div className="mx-auto max-w-7xl px-6 md:px-10 py-10 flex flex-col md:flex-row items-center justify-between gap-6">
         <div className="flex items-center gap-3">
           <img
-            src={logo.url}
+            src="/brasa-do-interior-logo.jpg"
             alt="Brasa do Interior - Churrascaria & Petiscaria"
             className="h-12 w-12 rounded-full object-cover border border-[color:var(--wine)]/30"
           />
