@@ -10,6 +10,8 @@ import g4 from "@/assets/gallery-4.jpg";
 import g5 from "@/assets/gallery-5.jpg";
 import g6 from "@/assets/gallery-6.jpg";
 import hero from "@/assets/hero-churrasqueira.jpg";
+import fachada from "@/assets/fachada.jpg.asset.json";
+import picanha from "@/assets/picanha.jpg.asset.json";
 
 export const Route = createFileRoute("/galeria")({
   head: () => ({
