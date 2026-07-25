@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Link, useRouterState } from "@tanstack/react-router";
 import { Menu, X, Moon, Sun, MessageCircle } from "lucide-react";
 import { WHATSAPP_URL } from "./WhatsAppFloat";
-import logo from "@/assets/brasa-do-interior-logo.jpg.asset.json";
+import logo from "@/assets/brasa-do-interior-logo.jpg";
 
 const links = [
   { to: "/cardapio", label: "Cardápio" },
@@ -14,7 +14,7 @@ const links = [
 function LogoMark() {
   return (
     <img
-      src={logo.url}
+      src={logo}
       alt="Brasa do Interior - Churrascaria & Petiscaria"
       className="h-11 w-11 shrink-0 rounded-full object-cover border border-[color:var(--gold)]/50"
     />
@@ -28,7 +28,7 @@ export function Navbar() {
 
   useEffect(() => {
     const saved = typeof localStorage !== "undefined" ? localStorage.getItem("theme") : null;
-    const prefersDark = saved ? saved === "dark" : true; // default dark like reference
+    const prefersDark = saved ? saved === "dark" : true;
     setDark(prefersDark);
     document.documentElement.classList.toggle("dark", prefersDark);
   }, []);
