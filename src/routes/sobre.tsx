@@ -3,7 +3,7 @@ import { Flame, Heart, Users } from "lucide-react";
 import { Layout } from "@/components/Layout";
 import { Reveal } from "@/components/Reveal";
 import g3 from "@/assets/gallery-3.jpg";
-import g2 from "@/assets/gallery-2.jpg";
+import picanha from "@/assets/picanha.jpg.asset.json";
 
 export const Route = createFileRoute("/sobre")({
   head: () => ({
@@ -73,7 +73,7 @@ function Sobre() {
       </section>
 
       <section className="relative py-24 overflow-hidden">
-        <img src={g2} alt="" className="absolute inset-0 h-full w-full object-cover" loading="lazy" width={1024} height={1024} />
+        <img src={picanha.url} alt="Picanha grelhada na brasa" className="absolute inset-0 h-full w-full object-cover" loading="lazy" width={1300} height={745} />
         <div className="absolute inset-0 bg-black/70" />
         <div className="relative z-10 max-w-3xl mx-auto text-center text-white px-4">
           <Reveal>
