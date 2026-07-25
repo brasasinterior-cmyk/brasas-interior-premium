@@ -6,7 +6,7 @@ import { Reveal } from "@/components/Reveal";
 import fachada from "@/assets/fachada.jpg.asset.json";
 import picanha from "@/assets/picanha.jpg.asset.json";
 import premio from "@/assets/premio.jpg.asset.json";
-import drink from "@/assets/drink-limao.jpg.asset.json";
+import drink from "public/caldinho-macaxeira";
 import carneChapa from "@/assets/carne-chapa.jpg.asset.json";
 import cebola from "@/assets/cebola-recheada.jpg.asset.json";
 
