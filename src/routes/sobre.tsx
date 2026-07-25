@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { Flame, Heart, Users } from "lucide-react";
 import { Layout } from "@/components/Layout";
 import { Reveal } from "@/components/Reveal";
-import g3 from "@/assets/gallery-3.jpg";
+import fachada from "@/assets/fachada.jpg.asset.json";
 import picanha from "@/assets/picanha.jpg.asset.json";
 
 export const Route = createFileRoute("/sobre")({
@@ -34,7 +34,7 @@ function Sobre() {
       <section className="py-20 md:py-28 bg-background">
         <div className="mx-auto max-w-6xl px-4 grid gap-12 md:grid-cols-2 items-center">
           <Reveal>
-            <img src={g3} alt="Ambiente do Brasas do Interior" className="rounded-2xl shadow-xl" loading="lazy" width={1024} height={1024} />
+            <img src={fachada.url} alt="Fachada da churrascaria Brasa do Interior em Passira" className="rounded-2xl shadow-xl w-full object-cover" loading="lazy" width={864} height={1536} />
           </Reveal>
           <Reveal delay={150}>
             <p className="text-[color:var(--gold)] uppercase tracking-[0.3em] text-xs mb-3">Nossa essência</p>
