@@ -102,7 +102,7 @@ function Galeria() {
           >
             <ChevronRight className="h-8 w-8" />
           </button>
-          <p className="absolute bottom-6 left-1/2 -translate-x-1/2 text-top-70 text-sm">
+          <p className="absolute bottom-6 left-1/2 -translate-x-1/2 text-white/70 text-sm">
             {idx + 1} / {photos.length} — {photos[idx].alt}
           </p>
         </div>
