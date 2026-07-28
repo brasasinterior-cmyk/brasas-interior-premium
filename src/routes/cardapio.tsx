@@ -134,8 +134,17 @@ function Cardapio() {
                   </p>
                   <div className="mt-5 flex items-center justify-between pt-4 border-t border-dashed border-[color:var(--border)]">
                     <span className="text-xs font-mono tracking-wide text-[color:var(--muted-foreground)]">
-                      {it.preco_p2 !== undefined && `P/2 · P/4 ${brl(it.preco_p4 ?? it.preco_p2)}`}
-                      {it.preco_p2 === undefined && it.preco === undefined && "Consultar"}
+                      {it.preco_p2 !== undefined && it.preco_p4 !== undefined && (
+                        <span className="inline-flex items-center gap-2">
+                          <span>P/2 <span className="text-[color:var(--wine)]">{brl(it.preco_p2)}</span></span>
+                          <span className="text-[color:var(--border)]">|</span>
+                          <span>P/4 <span className="text-[color:var(--wine)]">{brl(it.preco_p4)}</span></span>
+                        </span>
+                      )}
+                      {it.preco_p2 === undefined && it.preco_p4 !== undefined && (
+                        <span>P/4 <span className="text-[color:var(--wine)]">{brl(it.preco_p4)}</span></span>
+                      )}
+                      {it.preco_p2 === undefined && it.preco_p4 === undefined && it.preco === undefined && "Consultar"}
                     </span>
                     <a
                       href={WHATSAPP_URL}
