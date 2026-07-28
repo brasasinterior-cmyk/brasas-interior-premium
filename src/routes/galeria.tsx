@@ -46,11 +46,11 @@ function Galeria() {
 
   return (
     <Layout>
-      <section className="relative pt-32 pb-16 bg-[oklch(0.14_0.01_40)] text-white">
+      <section className="relative pt-32 pb-16 bg-top text-top">
         <div className="mx-auto max-w-4xl px-4 text-center">
           <p className="text-[color:var(--gold)] uppercase tracking-[0.3em] text-xs mb-3">Galeria</p>
           <h1 className="font-display text-5xl md:text-6xl font-bold">Sabores em imagens</h1>
-          <p className="mt-4 text-white/70">Clique em qualquer foto para ampliar.</p>
+          <p className="mt-4 text-top-70">Clique em qualquer foto para ampliar.</p>
         </div>
       </section>
 
@@ -102,7 +102,7 @@ function Galeria() {
           >
             <ChevronRight className="h-8 w-8" />
           </button>
-          <p className="absolute bottom-6 left-1/2 -translate-x-1/2 text-white/70 text-sm">
+          <p className="absolute bottom-6 left-1/2 -translate-x-1/2 text-top-70 text-sm">
             {idx + 1} / {photos.length} — {photos[idx].alt}
           </p>
         </div>

@@ -66,6 +66,7 @@
   --top-bg: oklch(0.965 0.012 75);
   --top-fg: oklch(0.20 0.03 40);
   --top-border: oklch(0.20 0.03 40 / 12%);
+  --eyebrow: var(--wine);
 }
 
 /* Dark theme = deep chocolate hero atmosphere */
@@ -96,6 +97,7 @@
   --top-bg: oklch(0.16 0.024 40);
   --top-fg: oklch(0.97 0.012 75);
   --top-border: oklch(1 0 0 / 12%);
+  --eyebrow: var(--gold);
 }
 
 @layer base {
@@ -217,7 +219,7 @@
   display: inline-flex;
   align-items: center;
   gap: 0.75rem;
-  color: var(--gold);
+  color: var(--eyebrow);
   text-transform: uppercase;
   letter-spacing: 0.28em;
   font-size: 0.7rem;
@@ -226,7 +228,7 @@
     content: "";
     width: 2rem;
     height: 1px;
-    background: var(--gold);
+    background: currentColor;
   }
 }
 
