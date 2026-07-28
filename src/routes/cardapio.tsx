@@ -124,7 +124,7 @@ function Cardapio() {
                       <h3 className="font-display text-lg text-[color:var(--cocoa)] leading-tight">{it.nome}</h3>
                     </div>
                     {it.preco !== undefined && (
-                      <span className="font-mono text-sm text-[color:var(--wine)] whitespace-nowrap">
+                      <span className="font-mono text-base font-semibold text-[color:var(--wine)] whitespace-nowrap">
                         R$ {it.preco.toFixed(2).replace(".", ",")}
                       </span>
                     )}
@@ -133,16 +133,16 @@ function Cardapio() {
                     {it.descricao}
                   </p>
                   <div className="mt-5 flex items-center justify-between pt-4 border-t border-dashed border-[color:var(--border)]">
-                    <span className="text-xs font-mono tracking-wide text-[color:var(--muted-foreground)]">
+                    <span className="text-sm font-medium text-[color:var(--cocoa)]">
                       {it.preco_p2 !== undefined && it.preco_p4 !== undefined && (
-                        <span className="inline-flex items-center gap-2">
-                          <span>P/2 <span className="text-[color:var(--wine)]">{brl(it.preco_p2)}</span></span>
+                        <span className="inline-flex flex-wrap items-center gap-2">
+                          <span className="px-2.5 py-1 rounded-full bg-[color:var(--gold)]/20 text-[color:var(--wine)]">P/2 {brl(it.preco_p2)}</span>
                           <span className="text-[color:var(--border)]">|</span>
-                          <span>P/4 <span className="text-[color:var(--wine)]">{brl(it.preco_p4)}</span></span>
+                          <span className="px-2.5 py-1 rounded-full bg-[color:var(--gold)]/20 text-[color:var(--wine)]">P/4 {brl(it.preco_p4)}</span>
                         </span>
                       )}
                       {it.preco_p2 === undefined && it.preco_p4 !== undefined && (
-                        <span>P/4 <span className="text-[color:var(--wine)]">{brl(it.preco_p4)}</span></span>
+                        <span className="px-2.5 py-1 rounded-full bg-[color:var(--gold)]/20 text-[color:var(--wine)]">P/4 {brl(it.preco_p4)}</span>
                       )}
                       {it.preco_p2 === undefined && it.preco_p4 === undefined && it.preco === undefined && "Consultar"}
                     </span>
