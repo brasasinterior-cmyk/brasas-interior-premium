@@ -62,6 +62,11 @@
   --wine: oklch(0.42 0.14 30);                 /* #7A1F1F */
   --cocoa: oklch(0.20 0.03 40);                /* deep brown */
   --cream: oklch(0.96 0.014 75);
+  /* Top / hero surface — light in light theme */
+  --top-bg: oklch(0.965 0.012 75);
+  --top-fg: oklch(0.20 0.03 40);
+  --top-border: oklch(0.20 0.03 40 / 12%);
+  --eyebrow: var(--wine);
 }
 
 /* Dark theme = deep chocolate hero atmosphere */
@@ -89,6 +94,10 @@
   --wine: oklch(0.48 0.16 30);
   --cocoa: oklch(0.16 0.024 40);
   --cream: oklch(0.95 0.014 75);
+  --top-bg: oklch(0.16 0.024 40);
+  --top-fg: oklch(0.97 0.012 75);
+  --top-border: oklch(1 0 0 / 12%);
+  --eyebrow: var(--gold);
 }
 
 @layer base {
@@ -111,16 +120,35 @@
 
 /* Vertical light rays used on hero background */
 @utility bg-cocoa-rays {
-  background-color: oklch(0.16 0.024 40);
+  background-color: var(--top-bg);
+  color: var(--top-fg);
   background-image:
-    radial-gradient(60% 80% at 70% 40%, rgba(245, 183, 28, 0.10), transparent 70%),
+    radial-gradient(60% 80% at 70% 40%, color-mix(in oklab, var(--gold) 18%, transparent), transparent 70%),
     repeating-linear-gradient(
       100deg,
-      rgba(255,255,255,0.02) 0px,
-      rgba(255,255,255,0.02) 1px,
+      color-mix(in oklab, var(--top-fg) 4%, transparent) 0px,
+      color-mix(in oklab, var(--top-fg) 4%, transparent) 1px,
       transparent 1px,
       transparent 120px
     );
+}
+
+/* Text helpers bound to the top surface */
+@utility text-top { color: var(--top-fg); }
+@utility text-top-70 { color: color-mix(in oklab, var(--top-fg) 70%, transparent); }
+@utility text-top-50 { color: color-mix(in oklab, var(--top-fg) 50%, transparent); }
+@utility text-top-40 { color: color-mix(in oklab, var(--top-fg) 40%, transparent); }
+@utility bg-top { background-color: var(--top-bg); color: var(--top-fg); }
+@utility border-top-line { border-color: var(--top-border); }
+
+/* Hero artwork blends differently per theme */
+@utility hero-art {
+  mix-blend-mode: multiply;
+  opacity: 0.28;
+}
+.dark .hero-art {
+  mix-blend-mode: screen;
+  opacity: 0.35;
 }
 
 /* Sub-hero differentials strip */
@@ -141,6 +169,21 @@
   font-size: 0.9rem;
   transition: transform .25s ease, box-shadow .25s ease, background .25s;
   &:hover { background: #ffc93a; transform: translateY(-1px); box-shadow: 0 12px 28px -14px rgba(245,183,28,.7); }
+}
+
+@utility btn-ghost-top {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: transparent;
+  color: var(--top-fg);
+  padding: 0.7rem 1.4rem;
+  border-radius: 999px;
+  border: 1px solid color-mix(in oklab, var(--top-fg) 28%, transparent);
+  font-weight: 500;
+  font-size: 0.9rem;
+  transition: all .25s;
+  &:hover { border-color: var(--wine); color: var(--wine); }
 }
 
 @utility btn-ghost-light {
@@ -176,7 +219,7 @@
   display: inline-flex;
   align-items: center;
   gap: 0.75rem;
-  color: var(--gold);
+  color: var(--eyebrow);
   text-transform: uppercase;
   letter-spacing: 0.28em;
   font-size: 0.7rem;
@@ -185,7 +228,7 @@
     content: "";
     width: 2rem;
     height: 1px;
-    background: var(--gold);
+    background: currentColor;
   }
 }
 

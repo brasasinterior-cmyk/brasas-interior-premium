@@ -19,11 +19,11 @@ export const Route = createFileRoute("/sobre")({
 function Sobre() {
   return (
     <Layout>
-      <section className="relative pt-32 pb-20 bg-[oklch(0.14_0.01_40)] text-white">
+      <section className="relative pt-32 pb-20 bg-top text-top">
         <div className="mx-auto max-w-4xl px-4 text-center">
           <p className="text-[color:var(--gold)] uppercase tracking-[0.3em] text-xs mb-3">Nossa História</p>
           <h1 className="font-display text-5xl md:text-6xl font-bold">Um pedaço do interior</h1>
-          <p className="mt-6 text-white/70 max-w-2xl mx-auto leading-relaxed">
+          <p className="mt-6 text-top-70 max-w-2xl mx-auto leading-relaxed">
             Nascemos com a missão de trazer para a mesa a autenticidade da culinária pernambucana, feita com brasa, tempero e afeto.
           </p>
         </div>

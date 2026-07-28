@@ -20,11 +20,11 @@ export const Route = createFileRoute("/contato")({
 function Contato() {
   return (
     <Layout>
-      <section className="relative pt-32 pb-16 bg-[oklch(0.14_0.01_40)] text-white">
+      <section className="relative pt-32 pb-16 bg-top text-top">
         <div className="mx-auto max-w-4xl px-4 text-center">
           <p className="text-[color:var(--gold)] uppercase tracking-[0.3em] text-xs mb-3">Fale conosco</p>
           <h1 className="font-display text-5xl md:text-6xl font-bold">Contato</h1>
-          <p className="mt-4 text-white/70">Estamos prontos para receber você.</p>
+          <p className="mt-4 text-top-70">Estamos prontos para receber você.</p>
         </div>
       </section>
 

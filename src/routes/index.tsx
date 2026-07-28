@@ -35,12 +35,12 @@ function Home() {
           src={hero}
           alt=""
           aria-hidden
-          className="pointer-events-none absolute right-[-10%] top-1/2 -translate-y-1/2 h-[85%] w-[65%] object-cover opacity-35 mix-blend-screen [mask-image:radial-gradient(50%_60%_at_60%_50%,black,transparent_75%)]"
+          className="pointer-events-none absolute right-[-10%] top-1/2 -translate-y-1/2 h-[85%] w-[65%] object-cover hero-art [mask-image:radial-gradient(50%_60%_at_60%_50%,black,transparent_75%)]"
         />
         <div className="relative mx-auto max-w-7xl px-6 md:px-10">
           <p className="eyebrow animate-fade-up">Passira, Pernambuco</p>
 
-          <h1 className="animate-fade-up font-display text-white text-[clamp(3rem,10vw,8.5rem)] leading-[0.95] mt-6 max-w-5xl" style={{ animationDelay: ".05s", fontWeight: 400 }}>
+          <h1 className="animate-fade-up font-display text-top text-[clamp(3rem,10vw,8.5rem)] leading-[0.95] mt-6 max-w-5xl" style={{ animationDelay: ".05s", fontWeight: 400 }}>
             O verdadeiro{" "}
             <em className="serif-italic-gold not-italic">
               <span className="italic">sabor</span>
@@ -49,7 +49,7 @@ function Home() {
           </h1>
 
           <div className="mt-10 grid gap-10 md:grid-cols-[minmax(0,1fr)_auto_minmax(0,20rem)] md:items-end animate-fade-up" style={{ animationDelay: ".15s" }}>
-            <p className="text-white/75 max-w-md text-base md:text-lg leading-relaxed">
+            <p className="text-top-70 max-w-md text-base md:text-lg leading-relaxed">
               Carne no ponto, lenha queimando devagar e o tempero que a gente aprendeu no interior.
             </p>
 
@@ -58,20 +58,20 @@ function Home() {
                 Ver o cardápio
                 <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
               </Link>
-              <a href={WHATSAPP_URL} target="_blank" rel="noreferrer" className="btn-ghost-light">
+              <a href={WHATSAPP_URL} target="_blank" rel="noreferrer" className="btn-ghost-top">
                 <MessageCircle className="h-4 w-4" /> Pedir pelo WhatsApp
               </a>
             </div>
 
-            <div className="border-l border-[color:var(--gold)]/50 pl-5 hidden md:block">
-              <h3 className="font-display text-white text-lg">Da lenha para a mesa</h3>
-              <p className="text-white/60 text-sm mt-1 leading-relaxed">
+            <div className="border-l border-[color:var(--gold)] pl-5 hidden md:block">
+              <h3 className="font-display text-top text-lg">Da lenha para a mesa</h3>
+              <p className="text-top-50 text-sm mt-1 leading-relaxed">
                 Um pedaço do nosso interior em cada prato.
               </p>
             </div>
           </div>
 
-          <p className="mt-14 hidden md:block text-white/40 text-[11px] tracking-[0.35em] uppercase">
+          <p className="mt-14 hidden md:block text-top-40 text-[11px] tracking-[0.35em] uppercase">
             — Desça para escolher
           </p>
         </div>
