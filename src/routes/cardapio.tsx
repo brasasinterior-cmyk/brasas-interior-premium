@@ -193,5 +193,3 @@ function AddRow({
     </div>
   );
 }
-
-}
