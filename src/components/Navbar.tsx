@@ -42,15 +42,15 @@ export function Navbar() {
   useEffect(() => setOpen(false), [pathname]);
 
   return (
-    <header className="fixed inset-x-0 top-0 z-50 border-b border-white/5 bg-[oklch(0.16_0.024_40)]/85 backdrop-blur-md">
+    <header className="fixed inset-x-0 top-0 z-50 border-b border-top-line bg-top/85 backdrop-blur-md">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-3">
         <Link to="/" className="flex items-center gap-3">
           <LogoMark />
           <span className="hidden sm:block leading-tight">
-            <span className="block font-display text-lg text-white">
+            <span className="block font-display text-lg text-top">
               Brasas <em className="not-italic text-[color:var(--gold)] font-normal italic">do</em> Interior
             </span>
-            <span className="block text-[10px] tracking-[0.3em] text-white/50 uppercase">Passira · Pernambuco</span>
+            <span className="block text-[10px] tracking-[0.3em] text-top-50 uppercase">Passira · Pernambuco</span>
           </span>
         </Link>
 
@@ -62,7 +62,7 @@ export function Navbar() {
                 key={l.to}
                 to={l.to}
                 className={`text-sm tracking-wide transition-colors ${
-                  active ? "text-[color:var(--gold)]" : "text-white/80 hover:text-white"
+                  active ? "text-[color:var(--wine)] font-medium" : "text-top-70 hover:text-top"
                 }`}
               >
                 {l.label}
@@ -75,7 +75,7 @@ export function Navbar() {
           <button
             onClick={toggleDark}
             aria-label="Alternar tema"
-            className="h-10 w-10 grid place-items-center rounded-full border border-white/15 text-white/80 hover:text-[color:var(--gold)] hover:border-[color:var(--gold)]/60 transition-colors"
+            className="h-10 w-10 grid place-items-center rounded-full border border-top-line text-top-70 hover:text-[color:var(--wine)] hover:border-[color:var(--wine)]/60 transition-colors"
           >
             {dark ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
           </button>
@@ -89,7 +89,7 @@ export function Navbar() {
           </a>
           <button
             onClick={() => setOpen((o) => !o)}
-            className="md:hidden p-2 rounded-md text-white"
+            className="md:hidden p-2 rounded-md text-top"
             aria-label="Menu"
           >
             {open ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
@@ -98,13 +98,13 @@ export function Navbar() {
       </div>
 
       {open && (
-        <div className="md:hidden border-t border-white/10 bg-[oklch(0.16_0.024_40)]">
+        <div className="md:hidden border-t border-top-line bg-top">
           <nav className="flex flex-col px-5 py-4 gap-1">
             {links.map((l) => (
               <Link
                 key={l.to}
                 to={l.to}
-                className="px-3 py-3 rounded-md text-white/90 hover:bg-white/5 font-medium"
+                className="px-3 py-3 rounded-md text-top hover:bg-[color:var(--wine)]/10 font-medium"
               >
                 {l.label}
               </Link>
