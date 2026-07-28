@@ -1,10 +1,11 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
-import { Search, ArrowRight, Flame, ChevronDown } from "lucide-react";
+import { Search, Plus, Minus, Flame, ChevronDown } from "lucide-react";
 import { Layout } from "@/components/Layout";
 import { Reveal } from "@/components/Reveal";
-import { WHATSAPP_URL } from "@/components/WhatsAppFloat";
+import { CartBar, useCart } from "@/components/OrderCart";
 import menu from "@/data/menu.json";
+
 
 type Item = {
   categoria: string; nome: string; descricao: string;
