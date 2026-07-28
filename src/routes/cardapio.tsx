@@ -135,28 +135,19 @@ function Cardapio() {
                   <p className="mt-3 text-sm text-[color:var(--muted-foreground)] leading-relaxed flex-1">
                     {it.descricao}
                   </p>
-                  <div className="mt-5 flex items-center justify-between pt-4 border-t border-dashed border-[color:var(--border)]">
-                    <span className="text-sm font-medium text-[color:var(--cocoa)]">
-                      {it.preco_p2 !== undefined && it.preco_p4 !== undefined && (
-                        <span className="inline-flex flex-wrap items-center gap-2">
-                          <span className="px-2.5 py-1 rounded-full bg-[color:var(--gold)]/20 text-[color:var(--wine)]">P/2 {brl(it.preco_p2)}</span>
-                          <span className="text-[color:var(--border)]">|</span>
-                          <span className="px-2.5 py-1 rounded-full bg-[color:var(--gold)]/20 text-[color:var(--wine)]">P/4 {brl(it.preco_p4)}</span>
-                        </span>
-                      )}
-                      {it.preco_p2 === undefined && it.preco_p4 !== undefined && (
-                        <span className="px-2.5 py-1 rounded-full bg-[color:var(--gold)]/20 text-[color:var(--wine)]">P/4 {brl(it.preco_p4)}</span>
-                      )}
-                      {it.preco_p2 === undefined && it.preco_p4 === undefined && it.preco === undefined && "Consultar"}
-                    </span>
-                    <a
-                      href={WHATSAPP_URL}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="text-[color:var(--wine)] text-sm inline-flex items-center gap-1 border-b border-[color:var(--wine)]/40 hover:border-[color:var(--wine)]"
-                    >
-                      Pedir <ArrowRight className="h-3 w-3" />
-                    </a>
+                  <div className="mt-5 pt-4 border-t border-dashed border-[color:var(--border)] flex flex-col gap-2">
+                    {it.preco !== undefined && (
+                      <AddRow cart={cart} id={`${it.nome}-un`} nome={it.nome} preco={it.preco} label={brl(it.preco)} />
+                    )}
+                    {it.preco_p2 !== undefined && (
+                      <AddRow cart={cart} id={`${it.nome}-p2`} nome={it.nome} variacao="P/2" preco={it.preco_p2} label={`P/2 ${brl(it.preco_p2)}`} />
+                    )}
+                    {it.preco_p4 !== undefined && (
+                      <AddRow cart={cart} id={`${it.nome}-p4`} nome={it.nome} variacao="P/4" preco={it.preco_p4} label={`P/4 ${brl(it.preco_p4)}`} />
+                    )}
+                    {it.preco === undefined && it.preco_p2 === undefined && it.preco_p4 === undefined && (
+                      <span className="text-sm text-[color:var(--muted-foreground)]">Consultar</span>
+                    )}
                   </div>
                 </article>
               </Reveal>
@@ -164,6 +155,43 @@ function Cardapio() {
           </div>
         </div>
       </section>
+
+      <CartBar cart={cart} />
     </Layout>
   );
+}
+
+function AddRow({
+  cart, id, nome, variacao, preco, label,
+}: {
+  cart: ReturnType<typeof useCart>; id: string; nome: string; variacao?: string; preco: number; label: string;
+}) {
+  const qtd = cart.qtyOf(id);
+  return (
+    <div className="flex items-center justify-between gap-3">
+      <span className="text-sm px-2.5 py-1 rounded-full bg-[color:var(--gold)]/20 text-[color:var(--wine)] font-medium">
+        {label}
+      </span>
+      {qtd === 0 ? (
+        <button
+          onClick={() => cart.add({ id, nome, variacao, preco })}
+          className="inline-flex items-center gap-1.5 rounded-full bg-[color:var(--wine)] text-white text-sm px-4 py-1.5 hover:brightness-110 transition"
+        >
+          <Plus className="h-3.5 w-3.5" /> Adicionar
+        </button>
+      ) : (
+        <span className="inline-flex items-center gap-2">
+          <button onClick={() => cart.dec(id)} aria-label="Diminuir" className="h-8 w-8 grid place-items-center rounded-full border border-[color:var(--border)] text-[color:var(--cocoa)]">
+            <Minus className="h-3.5 w-3.5" />
+          </button>
+          <span className="w-5 text-center text-sm text-[color:var(--cocoa)]">{qtd}</span>
+          <button onClick={() => cart.add({ id, nome, variacao, preco })} aria-label="Aumentar" className="h-8 w-8 grid place-items-center rounded-full bg-[color:var(--wine)] text-white">
+            <Plus className="h-3.5 w-3.5" />
+          </button>
+        </span>
+      )}
+    </div>
+  );
+}
+
 }
