@@ -29,9 +29,11 @@ export const Route = createFileRoute("/cardapio")({
 
 function Cardapio() {
   const items = menu as Item[];
+  const cart = useCart();
   const categories = useMemo(() => Array.from(new Set(items.map((i) => i.categoria))), [items]);
   const [cat, setCat] = useState(categories[0] ?? "");
   const [q, setQ] = useState("");
+
 
   const filtered = items.filter((i) => {
     const okCat = !cat || i.categoria === cat;
