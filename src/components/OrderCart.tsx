@@ -178,7 +178,7 @@ export function CartBar({ cart }: { cart: ReturnType<typeof useCart> }) {
                       value={entrega.nome}
                       onChange={(e) => setEntrega({ ...entrega, nome: e.target.value })}
                       placeholder="Ex: Maria Silva"
-                      className={`w-full px-4 py-3 rounded-xl bg-[color:var(--cream)] border ${campoErro("nome")} focus:border-[color:var(--gold)] focus:outline-none text-sm`}
+                      className={`w-full px-4 py-3 rounded-xl bg-[color:var(--cream)] border ${campoErro("nome")} focus:border-[color:var(--gold)] focus:outline-none text-sm text-[color:var(--cocoa)] placeholder:text-[color:var(--muted-foreground)]`}
                     />
                   </div>
 
@@ -220,7 +220,7 @@ export function CartBar({ cart }: { cart: ReturnType<typeof useCart> }) {
                             value={entrega.rua}
                             onChange={(e) => setEntrega({ ...entrega, rua: e.target.value })}
                             placeholder="Nome da rua"
-                            className={`w-full px-4 py-3 rounded-xl bg-[color:var(--cream)] border ${campoErro("rua")} focus:border-[color:var(--gold)] focus:outline-none text-sm`}
+                            className={`w-full px-4 py-3 rounded-xl bg-[color:var(--cream)] border ${campoErro("rua")} focus:border-[color:var(--gold)] focus:outline-none text-sm text-[color:var(--cocoa)] placeholder:text-[color:var(--muted-foreground)]`}
                           />
                         </div>
                         <div>
@@ -230,7 +230,7 @@ export function CartBar({ cart }: { cart: ReturnType<typeof useCart> }) {
                             value={entrega.numero}
                             onChange={(e) => setEntrega({ ...entrega, numero: e.target.value })}
                             placeholder="123"
-                            className={`w-full px-4 py-3 rounded-xl bg-[color:var(--cream)] border ${campoErro("numero")} focus:border-[color:var(--gold)] focus:outline-none text-sm sm:w-24`}
+                            className={`w-full px-4 py-3 rounded-xl bg-[color:var(--cream)] border ${campoErro("numero")} focus:border-[color:var(--gold)] focus:outline-none text-sm text-[color:var(--cocoa)] placeholder:text-[color:var(--muted-foreground)] sm:w-24`}
                           />
                         </div>
                       </div>
@@ -241,7 +241,7 @@ export function CartBar({ cart }: { cart: ReturnType<typeof useCart> }) {
                           value={entrega.bairro}
                           onChange={(e) => setEntrega({ ...entrega, bairro: e.target.value })}
                           placeholder="Bairro"
-                          className={`w-full px-4 py-3 rounded-xl bg-[color:var(--cream)] border ${campoErro("bairro")} focus:border-[color:var(--gold)] focus:outline-none text-sm`}
+                          className={`w-full px-4 py-3 rounded-xl bg-[color:var(--cream)] border ${campoErro("bairro")} focus:border-[color:var(--gold)] focus:outline-none text-sm text-[color:var(--cocoa)] placeholder:text-[color:var(--muted-foreground)]`}
                         />
                       </div>
                       <div>
@@ -253,7 +253,7 @@ export function CartBar({ cart }: { cart: ReturnType<typeof useCart> }) {
                           value={entrega.referencia}
                           onChange={(e) => setEntrega({ ...entrega, referencia: e.target.value })}
                           placeholder="Ex: perto da igreja, portão azul..."
-                          className="w-full px-4 py-3 rounded-xl bg-[color:var(--cream)] border border-[color:var(--border)] focus:border-[color:var(--gold)] focus:outline-none text-sm"
+                          className="w-full px-4 py-3 rounded-xl bg-[color:var(--cream)] border border-[color:var(--border)] focus:border-[color:var(--gold)] focus:outline-none text-sm text-[color:var(--cocoa)] placeholder:text-[color:var(--muted-foreground)]"
                         />
                       </div>
                     </div>
