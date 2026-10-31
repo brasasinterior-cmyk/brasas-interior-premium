@@ -57,10 +57,10 @@ function Cardapio() {
       <section className="pt-32 pb-10 bg-[color:var(--cream)]">
         <div className="mx-auto max-w-7xl px-6 md:px-10 grid md:grid-cols-2 gap-10 items-end">
           <div>
-            <p className="eyebrow text-[color:var(--wine)] before:bg-[color:var(--wine)]">Cardápio da casa</p>
+            <p className="eyebrow text-[color:var(--gold)] before:bg-[color:var(--gold)]">Cardápio da casa</p>
             <h1 className="mt-6 font-display text-[color:var(--cocoa)] text-[clamp(2.5rem,7vw,5rem)] leading-[1]" style={{ fontWeight: 400 }}>
               Escolha seu{" "}
-              <em className="serif-italic-wine italic">momento.</em>
+              <em className="serif-italic-gold italic">momento.</em>
             </h1>
           </div>
           <p className="text-[color:var(--muted-foreground)] max-w-md md:ml-auto leading-relaxed">
@@ -183,7 +183,7 @@ function AddRow({
   const qtd = cart.qtyOf(id);
   return (
     <div className="flex items-center justify-between gap-3">
-      <span className="text-sm px-2.5 py-1 rounded-full bg-[color:var(--gold)]/20 text-[color:var(--wine)] font-medium">
+      <span className="text-sm px-2.5 py-1 rounded-full bg-[color:var(--gold)]/15 text-[color:var(--gold)] font-medium">
         {label}
       </span>
       {qtd === 0 ? (
