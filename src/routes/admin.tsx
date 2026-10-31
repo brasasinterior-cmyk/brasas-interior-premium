@@ -10,6 +10,9 @@ import { galleryQuery, productsQuery, uploadSiteImage, type Product } from "@/li
 
 export const Route = createFileRoute("/admin")({
   ssr: false,
+  validateSearch: (search: Record<string, unknown>): { secao?: string } => ({
+    secao: typeof search.secao === "string" && search.secao ? search.secao : undefined,
+  }),
   head: () => ({
     meta: [
       { title: "Administração — Brasas do Interior" },
@@ -111,9 +114,26 @@ function LoginForm() {
 }
 
 function Dashboard({ email }: { email: string }) {
-  const [tab, setTab] = useState<"produtos" | "fotos">("produtos");
+  const { secao } = Route.useSearch();
+  const navigate = Route.useNavigate();
+  const { data = [] } = useQuery(productsQuery);
+  const categories = useMemo(() => Array.from(new Set(data.map((p) => p.categoria))), [data]);
+  const go = (s?: string) => navigate({ search: { secao: s } });
+  const navItem = (label: string, value: string | undefined, count?: number) => (
+    <button
+      key={label}
+      onClick={() => go(value)}
+      className={`w-full flex items-center justify-between rounded-lg px-3 py-2 text-sm text-left transition ${
+        secao === value ? "bg-[color:var(--wine)] text-white" : "hover:bg-muted text-foreground"
+      }`}
+    >
+      <span className="truncate">{label}</span>
+      {count !== undefined && <span className="text-xs opacity-70">{count}</span>}
+    </button>
+  );
+
   return (
-    <div className="mx-auto max-w-6xl px-4 py-8">
+    <div className="mx-auto max-w-7xl px-4 py-8">
       <header className="flex flex-wrap items-center justify-between gap-4 mb-8">
         <div>
           <h1 className="font-display text-3xl">Administração</h1>
@@ -121,14 +141,38 @@ function Dashboard({ email }: { email: string }) {
         </div>
         <button className={btnGhost} onClick={() => supabase.auth.signOut()}><LogOut className="h-4 w-4" /> Sair</button>
       </header>
-      <div className="flex gap-2 mb-6">
-        {(["produtos", "fotos"] as const).map((t) => (
-          <button key={t} onClick={() => setTab(t)} className={tab === t ? btn : btnGhost}>
-            {t === "produtos" ? "Produtos" : "Fotos da galeria"}
-          </button>
-        ))}
+      <div className="grid gap-6 md:grid-cols-[220px_1fr]">
+        <nav className="space-y-1 md:sticky md:top-6 self-start rounded-xl border border-[color:var(--border)] bg-card p-2">
+          {navItem("Início", undefined)}
+          <p className="px-3 pt-3 pb-1 text-[10px] uppercase tracking-widest text-muted-foreground">Cardápio</p>
+          {categories.map((c) => navItem(c, c, data.filter((p) => p.categoria === c).length))}
+          <p className="px-3 pt-3 pb-1 text-[10px] uppercase tracking-widest text-muted-foreground">Site</p>
+          {navItem("Fotos da galeria", "fotos")}
+        </nav>
+        <main>
+          {secao === "fotos" ? (
+            <PhotosAdmin />
+          ) : secao ? (
+            <ProductsAdmin categoria={secao} categories={categories} />
+          ) : (
+            <div>
+              <h2 className="font-display text-2xl mb-4">Escolha uma seção</h2>
+              <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+                {categories.map((c) => (
+                  <button key={c} onClick={() => go(c)} className="rounded-xl border border-[color:var(--border)] bg-card p-5 text-left hover:border-[color:var(--wine)] transition">
+                    <p className="font-display text-lg">{c}</p>
+                    <p className="text-sm text-muted-foreground">{data.filter((p) => p.categoria === c).length} produtos</p>
+                  </button>
+                ))}
+                <button onClick={() => go("fotos")} className="rounded-xl border border-[color:var(--border)] bg-card p-5 text-left hover:border-[color:var(--wine)] transition">
+                  <p className="font-display text-lg">Fotos da galeria</p>
+                  <p className="text-sm text-muted-foreground">Adicionar e remover fotos</p>
+                </button>
+              </div>
+            </div>
+          )}
+        </main>
       </div>
-      {tab === "produtos" ? <ProductsAdmin /> : <PhotosAdmin />}
     </div>
   );
 }
@@ -136,13 +180,12 @@ function Dashboard({ email }: { email: string }) {
 type Draft = Omit<Product, "id" | "ordem" | "ativo"> & { id?: string; ativo: boolean };
 const emptyDraft: Draft = { categoria: "", nome: "", descricao: "", preco: null, preco_p2: null, preco_p4: null, imagem_url: null, ativo: true };
 
-function ProductsAdmin() {
+function ProductsAdmin({ categoria, categories }: { categoria: string; categories: string[] }) {
   const qc = useQueryClient();
   const { data = [], isLoading } = useQuery(productsQuery);
   const [editing, setEditing] = useState<Draft | null>(null);
   const [filter, setFilter] = useState("");
-  const categories = useMemo(() => Array.from(new Set(data.map((p) => p.categoria))), [data]);
-  const list = data.filter((p) => (p.nome + p.categoria).toLowerCase().includes(filter.toLowerCase()));
+  const list = data.filter((p) => p.categoria === categoria && p.nome.toLowerCase().includes(filter.toLowerCase()));
 
   async function remove(p: Product) {
     if (!confirm(`Remover "${p.nome}"?`)) return;
@@ -154,9 +197,10 @@ function ProductsAdmin() {
 
   return (
     <div>
+      <h2 className="font-display text-2xl mb-4">{categoria} <span className="text-base text-muted-foreground">({list.length})</span></h2>
       <div className="flex flex-wrap gap-3 mb-4">
         <input className={`${input} max-w-xs`} placeholder="Buscar produto…" value={filter} onChange={(e) => setFilter(e.target.value)} />
-        <button className={btn} onClick={() => setEditing({ ...emptyDraft, categoria: categories[0] ?? "" })}><Plus className="h-4 w-4" /> Novo produto</button>
+        <button className={btn} onClick={() => setEditing({ ...emptyDraft, categoria })}><Plus className="h-4 w-4" /> Novo produto</button>
       </div>
       {isLoading && <p>Carregando…</p>}
       <div className="divide-y divide-[color:var(--border)] rounded-xl border border-[color:var(--border)] bg-card">
@@ -166,7 +210,7 @@ function ProductsAdmin() {
             <div className="flex-1 min-w-0">
               <p className="font-medium truncate">{p.nome} {!p.ativo && <span className="text-xs text-muted-foreground">(oculto)</span>}</p>
               <p className="text-xs text-muted-foreground">
-                {p.categoria} · {[p.preco && `R$ ${p.preco.toFixed(2)}`, p.preco_p2 && `P/2 R$ ${p.preco_p2.toFixed(2)}`, p.preco_p4 && `P/4 R$ ${p.preco_p4.toFixed(2)}`].filter(Boolean).join(" · ")}
+                {[p.preco && `R$ ${p.preco.toFixed(2)}`, p.preco_p2 && `P/2 R$ ${p.preco_p2.toFixed(2)}`, p.preco_p4 && `P/4 R$ ${p.preco_p4.toFixed(2)}`].filter(Boolean).join(" · ")}
               </p>
             </div>
             <button aria-label="Editar" className={btnGhost} onClick={() => setEditing({ ...p })}><Pencil className="h-4 w-4" /></button>
