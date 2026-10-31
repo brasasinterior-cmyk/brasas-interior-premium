@@ -14,6 +14,7 @@ import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as GaleriaRouteImport } from './routes/galeria'
 import { Route as ContatoRouteImport } from './routes/contato'
 import { Route as CardapioRouteImport } from './routes/cardapio'
+import { Route as AdminRouteImport } from './routes/admin'
 import { Route as IndexRouteImport } from './routes/index'
 
 const SobreRoute = SobreRouteImport.update({
@@ -41,6 +42,11 @@ const CardapioRoute = CardapioRouteImport.update({
   path: '/cardapio',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminRoute = AdminRouteImport.update({
+  id: '/admin',
+  path: '/admin',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -49,6 +55,7 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/admin': typeof AdminRoute
   '/cardapio': typeof CardapioRoute
   '/contato': typeof ContatoRoute
   '/galeria': typeof GaleriaRoute
@@ -57,6 +64,7 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/admin': typeof AdminRoute
   '/cardapio': typeof CardapioRoute
   '/contato': typeof ContatoRoute
   '/galeria': typeof GaleriaRoute
@@ -66,6 +74,7 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/admin': typeof AdminRoute
   '/cardapio': typeof CardapioRoute
   '/contato': typeof ContatoRoute
   '/galeria': typeof GaleriaRoute
@@ -76,16 +85,25 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/admin'
     | '/cardapio'
     | '/contato'
     | '/galeria'
     | '/sitemap.xml'
     | '/sobre'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/cardapio' | '/contato' | '/galeria' | '/sitemap.xml' | '/sobre'
+  to:
+    | '/'
+    | '/admin'
+    | '/cardapio'
+    | '/contato'
+    | '/galeria'
+    | '/sitemap.xml'
+    | '/sobre'
   id:
     | '__root__'
     | '/'
+    | '/admin'
     | '/cardapio'
     | '/contato'
     | '/galeria'
@@ -95,6 +113,7 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AdminRoute: typeof AdminRoute
   CardapioRoute: typeof CardapioRoute
   ContatoRoute: typeof ContatoRoute
   GaleriaRoute: typeof GaleriaRoute
@@ -139,6 +158,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CardapioRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin': {
+      id: '/admin'
+      path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof AdminRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -151,6 +177,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AdminRoute: AdminRoute,
   CardapioRoute: CardapioRoute,
   ContatoRoute: ContatoRoute,
   GaleriaRoute: GaleriaRoute,
