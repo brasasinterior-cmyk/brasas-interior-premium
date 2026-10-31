@@ -128,7 +128,7 @@ export function CartBar({ cart }: { cart: ReturnType<typeof useCart> }) {
             Ver itens
           </button>
           <button
-            onClick={() => setCheckout(true)}
+            onClick={() => { setOpen(true); setCheckout(true); }}
             className="rounded-full bg-[color:var(--gold)] text-black px-4 py-2 text-sm font-semibold inline-flex items-center gap-2 hover:brightness-110 transition"
           >
             <MessageCircle className="h-4 w-4" /> Finalizar
