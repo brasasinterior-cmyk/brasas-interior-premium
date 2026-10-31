@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
 import { Layout } from "@/components/Layout";
 import { Reveal } from "@/components/Reveal";
+import { useQuery } from "@tanstack/react-query";
+import { galleryQuery } from "@/lib/site-data";
 
 export const Route = createFileRoute("/galeria")({
   head: () => ({
@@ -17,7 +19,7 @@ export const Route = createFileRoute("/galeria")({
   component: Galeria,
 });
 
-const photos = [
+const fallbackPhotos = [
   { src: "/fachada-do-brasa-do-interior-passira.jpg", alt: "Fachada da Brasa do Interior em Passira" },
   { src: "/carne-na-chapa-quente.jpg", alt: "Carne na chapa quente" },
   { src: "/cebola-recheada.jpg", alt: "Cebola recheada com queijo e torradas" },
@@ -28,6 +30,8 @@ const photos = [
 
 function Galeria() {
   const [idx, setIdx] = useState<number | null>(null);
+  const { data } = useQuery(galleryQuery);
+  const photos = data ? data.map((p) => ({ src: p.url, alt: p.alt })) : fallbackPhotos;
 
   useEffect(() => {
     if (idx === null) return;
@@ -42,7 +46,7 @@ function Galeria() {
       document.body.style.overflow = "";
       window.removeEventListener("keydown", onKey);
     };
-  }, [idx]);
+  }, [idx, photos.length]);
 
   return (
     <Layout>
@@ -58,7 +62,7 @@ function Galeria() {
         <div className="mx-auto max-w-7xl px-4">
           <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
             {photos.map((p, i) => (
-              <Reveal key={p.alt} delay={(i % 6) * 60}>
+              <Reveal key={p.src + i} delay={(i % 6) * 60}>
                 <button
                   onClick={() => setIdx(i)}
                   className={`relative w-full overflow-hidden rounded-xl group card-lift ${
