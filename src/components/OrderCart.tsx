@@ -230,7 +230,7 @@ export function CartBar({ cart }: { cart: ReturnType<typeof useCart> }) {
                             value={entrega.numero}
                             onChange={(e) => setEntrega({ ...entrega, numero: e.target.value })}
                             placeholder="123"
-                            className={`w-full px-4 py-3 rounded-xl bg-[color:var(--cream)] border ${campoErro("numero")} focus:border-[color:var(--gold)] focus:outline-none text-sm sm:w-24`}
+                            className={`w-full px-4 py-3 rounded-xl bg-[color:var(--cream)] border ${campoErro("numero")} focus:border-[color:var(--gold)] focus:outline-none text-sm text-[color:var(--cocoa)] placeholder:text-[color:var(--muted-foreground)] sm:w-24`}
                           />
                         </div>
                       </div>
