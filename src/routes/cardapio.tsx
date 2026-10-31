@@ -4,7 +4,9 @@ import { Search, Plus, Minus, Flame, ChevronDown } from "lucide-react";
 import { Layout } from "@/components/Layout";
 import { Reveal } from "@/components/Reveal";
 import { CartBar, useCart } from "@/components/OrderCart";
-import menu from "@/data/menu.json";
+import { useQuery } from "@tanstack/react-query";
+import { productsQuery } from "@/lib/site-data";
+import fallbackMenu from "@/data/menu.json";
 
 
 type Item = {
@@ -28,10 +30,17 @@ export const Route = createFileRoute("/cardapio")({
 });
 
 function Cardapio() {
-  const items = menu as Item[];
+  const { data } = useQuery(productsQuery);
+  const items: Item[] = data
+    ? data.map((p) => ({
+        categoria: p.categoria, nome: p.nome, descricao: p.descricao, imagem: p.imagem_url ?? "",
+        preco: p.preco ?? undefined, preco_p2: p.preco_p2 ?? undefined, preco_p4: p.preco_p4 ?? undefined,
+      }))
+    : (fallbackMenu as Item[]);
   const cart = useCart();
   const categories = useMemo(() => Array.from(new Set(items.map((i) => i.categoria))), [items]);
-  const [cat, setCat] = useState(categories[0] ?? "");
+  const [catSel, setCat] = useState("");
+  const cat = catSel && categories.includes(catSel) ? catSel : categories[0] ?? "";
   const [q, setQ] = useState("");
 
 
@@ -119,6 +128,9 @@ function Cardapio() {
             {filtered.map((it, i) => (
               <Reveal key={it.nome + i} delay={(i % 6) * 40}>
                 <article className="card-lift bg-white border border-[color:var(--border)] rounded-2xl p-5 h-full flex flex-col">
+                  {it.imagem.startsWith("http") && (
+                    <img src={it.imagem} alt={it.nome} loading="lazy" className="-mx-5 -mt-5 mb-4 h-44 w-[calc(100%+2.5rem)] max-w-none object-cover rounded-t-2xl" />
+                  )}
                   <div className="flex items-start justify-between gap-3">
                     <span className="h-9 w-9 rounded-full bg-[color:var(--gold)]/20 grid place-items-center text-[color:var(--wine)] shrink-0">
                       <Flame className="h-4 w-4" />
