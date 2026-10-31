@@ -100,6 +100,27 @@
   --eyebrow: var(--gold);
 }
 
+/* Menu page — always-dark editorial surface, independent of theme toggle */
+.menu-dark {
+  --background: oklch(0.14 0.02 40);
+  --foreground: oklch(0.95 0.014 75);
+  --card: oklch(0.21 0.028 40);
+  --card-foreground: oklch(0.95 0.014 75);
+  --popover: oklch(0.21 0.028 40);
+  --popover-foreground: oklch(0.95 0.014 75);
+  --secondary: oklch(0.24 0.03 40);
+  --secondary-foreground: oklch(0.95 0.014 75);
+  --muted: oklch(0.24 0.03 40);
+  --muted-foreground: oklch(0.76 0.02 75);
+  --border: oklch(1 0 0 / 12%);
+  --input: oklch(1 0 0 / 16%);
+  --ring: var(--gold);
+  --gold: oklch(0.86 0.17 85);
+  --wine: oklch(0.62 0.16 30);
+  --cocoa: oklch(0.95 0.014 75);
+  --cream: oklch(0.14 0.02 40);
+}
+
 @layer base {
   * { border-color: var(--color-border); }
   html { scroll-behavior: smooth; }

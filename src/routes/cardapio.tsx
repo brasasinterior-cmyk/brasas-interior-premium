@@ -52,14 +52,15 @@ function Cardapio() {
 
   return (
     <Layout>
-      {/* Header on cream */}
+      {/* Menu page: always-dark editorial surface */}
+      <div className="menu-dark min-h-screen bg-[color:var(--cream)]">
       <section className="pt-32 pb-10 bg-[color:var(--cream)]">
         <div className="mx-auto max-w-7xl px-6 md:px-10 grid md:grid-cols-2 gap-10 items-end">
           <div>
-            <p className="eyebrow text-[color:var(--wine)] before:bg-[color:var(--wine)]">Cardápio da casa</p>
+            <p className="eyebrow text-[color:var(--gold)] before:bg-[color:var(--gold)]">Cardápio da casa</p>
             <h1 className="mt-6 font-display text-[color:var(--cocoa)] text-[clamp(2.5rem,7vw,5rem)] leading-[1]" style={{ fontWeight: 400 }}>
               Escolha seu{" "}
-              <em className="serif-italic-wine italic">momento.</em>
+              <em className="serif-italic-gold italic">momento.</em>
             </h1>
           </div>
           <p className="text-[color:var(--muted-foreground)] max-w-md md:ml-auto leading-relaxed">
@@ -76,14 +77,14 @@ function Cardapio() {
                 value={q}
                 onChange={(e) => setQ(e.target.value)}
                 placeholder="O que você está procurando?"
-                className="w-full pl-11 pr-4 py-3 rounded-full bg-white border border-[color:var(--border)] focus:border-[color:var(--gold)] focus:outline-none text-sm placeholder:text-[color:var(--muted-foreground)]"
+                className="w-full pl-11 pr-4 py-3 rounded-full bg-[color:var(--card)] border border-[color:var(--border)] focus:border-[color:var(--gold)] focus:outline-none text-sm text-[color:var(--foreground)] placeholder:text-[color:var(--muted-foreground)]"
               />
             </div>
             <div className="relative">
               <select
                 value={cat}
                 onChange={(e) => setCat(e.target.value)}
-                className="appearance-none pl-5 pr-10 py-3 rounded-full bg-white border border-[color:var(--border)] text-sm text-[color:var(--cocoa)] focus:border-[color:var(--gold)] focus:outline-none"
+                className="appearance-none pl-5 pr-10 py-3 rounded-full bg-[color:var(--card)] border border-[color:var(--border)] text-sm text-[color:var(--foreground)] focus:border-[color:var(--gold)] focus:outline-none"
               >
                 {categories.map((c) => <option key={c} value={c}>{c}</option>)}
               </select>
@@ -127,19 +128,19 @@ function Cardapio() {
           <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
             {filtered.map((it, i) => (
               <Reveal key={it.nome + i} delay={(i % 6) * 40}>
-                <article className="card-lift bg-white border border-[color:var(--border)] rounded-2xl p-5 h-full flex flex-col">
+                <article className="card-lift bg-[color:var(--card)] border border-[color:var(--border)] rounded-2xl p-5 h-full flex flex-col">
                   {it.imagem.startsWith("http") && (
                     <img src={it.imagem} alt={it.nome} loading="lazy" className="-mx-5 -mt-5 mb-4 h-44 w-[calc(100%+2.5rem)] max-w-none object-cover rounded-t-2xl" />
                   )}
                   <div className="flex items-start justify-between gap-3">
-                    <span className="h-9 w-9 rounded-full bg-[color:var(--gold)]/20 grid place-items-center text-[color:var(--wine)] shrink-0">
+                    <span className="h-9 w-9 rounded-full bg-[color:var(--gold)]/20 grid place-items-center text-[color:var(--gold)] shrink-0">
                       <Flame className="h-4 w-4" />
                     </span>
                     <div className="flex-1 min-w-0">
                       <h3 className="font-display text-lg text-[color:var(--cocoa)] leading-tight">{it.nome}</h3>
                     </div>
                     {it.preco !== undefined && (
-                      <span className="font-mono text-base font-semibold text-[color:var(--wine)] whitespace-nowrap">
+                      <span className="font-mono text-base font-semibold text-[color:var(--gold)] whitespace-nowrap">
                         R$ {it.preco.toFixed(2).replace(".", ",")}
                       </span>
                     )}
@@ -167,6 +168,7 @@ function Cardapio() {
           </div>
         </div>
       </section>
+      </div>
 
       <CartBar cart={cart} />
     </Layout>
@@ -181,7 +183,7 @@ function AddRow({
   const qtd = cart.qtyOf(id);
   return (
     <div className="flex items-center justify-between gap-3">
-      <span className="text-sm px-2.5 py-1 rounded-full bg-[color:var(--gold)]/20 text-[color:var(--wine)] font-medium">
+      <span className="text-sm px-2.5 py-1 rounded-full bg-[color:var(--gold)]/15 text-[color:var(--gold)] font-medium">
         {label}
       </span>
       {qtd === 0 ? (
