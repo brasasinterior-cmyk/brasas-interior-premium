@@ -1,9 +1,10 @@
 import { Link } from "@tanstack/react-router";
-import { Instagram, Facebook } from "lucide-react";
+import { Instagram, Facebook, Snowflake } from "lucide-react";
 
 export function Footer() {
   return (
     <footer className="bg-[color:var(--cream)] border-t border-[color:var(--border)]">
+      <div className="holiday-hairline" />
       <div className="mx-auto max-w-7xl px-6 md:px-10 py-10 flex flex-col md:flex-row items-center justify-between gap-6">
         <div className="flex items-center gap-3">
           <img
@@ -38,6 +39,10 @@ export function Footer() {
       <div className="border-t border-[color:var(--border)]">
         <div className="mx-auto max-w-7xl px-6 md:px-10 py-5 flex flex-col md:flex-row items-center justify-between gap-2 text-xs text-[color:var(--muted-foreground)]">
           <p className="italic font-display">O verdadeiro sabor da brasa.</p>
+          <p className="inline-flex items-center gap-2 text-[color:var(--wine)]">
+            <Snowflake className="h-3.5 w-3.5" aria-hidden />
+            Feliz Natal e um Ano Novo cheio de brasa
+          </p>
           <p>© {new Date().getFullYear()} Brasas do Interior</p>
         </div>
       </div>

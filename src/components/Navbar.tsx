@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link, useRouterState } from "@tanstack/react-router";
-import { Menu, X, Moon, Sun, MessageCircle } from "lucide-react";
+import { Menu, X, Moon, Sun, MessageCircle, Snowflake } from "lucide-react";
 import { WHATSAPP_URL } from "./WhatsAppFloat";
 
 const links = [
@@ -47,8 +47,9 @@ export function Navbar() {
         <Link to="/" className="flex items-center gap-3">
           <LogoMark />
           <span className="hidden sm:block leading-tight">
-            <span className="block font-display text-lg text-top">
+            <span className="flex items-center gap-1.5 font-display text-lg text-top">
               Brasas <em className="not-italic text-[color:var(--gold)] font-normal italic">do</em> Interior
+              <Snowflake className="h-3.5 w-3.5 text-[color:var(--gold)]" aria-hidden />
             </span>
             <span className="block text-[10px] tracking-[0.3em] text-top-50 uppercase">Passira · Pernambuco</span>
           </span>

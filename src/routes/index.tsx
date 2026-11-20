@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { Flame, ChefHat, Sparkles, ShoppingBag, MapPin, ArrowRight, MessageCircle } from "lucide-react";
 import { Layout } from "@/components/Layout";
 import { Reveal } from "@/components/Reveal";
+import { Garland, HolidayOrnament, HolidayPill } from "@/components/HolidayTheme";
 import { WHATSAPP_URL } from "@/components/WhatsAppFloat";
 import hero from "@/assets/hero-churrasqueira.jpg";
 
@@ -37,8 +38,13 @@ function Home() {
           aria-hidden
           className="pointer-events-none absolute right-[-10%] top-1/2 -translate-y-1/2 h-[85%] w-[65%] object-cover hero-art [mask-image:radial-gradient(50%_60%_at_60%_50%,black,transparent_75%)]"
         />
+        <Garland className="pointer-events-none absolute inset-x-0 top-[68px] h-16 w-full" />
+
         <div className="relative mx-auto max-w-7xl px-6 md:px-10">
-          <p className="eyebrow animate-fade-up">Passira, Pernambuco</p>
+          <div className="animate-fade-up flex flex-wrap items-center gap-4">
+            <HolidayPill />
+            <p className="eyebrow">Passira, Pernambuco</p>
+          </div>
 
           <h1 className="animate-fade-up font-display text-top text-[clamp(3rem,10vw,8.5rem)] leading-[0.95] mt-6 max-w-5xl" style={{ animationDelay: ".05s", fontWeight: 400 }}>
             O verdadeiro{" "}
@@ -169,6 +175,66 @@ function Home() {
                 <h4 className="font-display italic text-[color:var(--gold)] text-2xl">Na brasa</h4>
                 <p className="text-white/70 text-sm mt-1">O sabor que fica na memória</p>
               </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* CEIA DE NATAL */}
+      <section className="bg-[color:var(--cream)] pb-24 md:pb-32">
+        <div className="mx-auto max-w-7xl px-6 md:px-10">
+          <div className="relative overflow-hidden rounded-3xl border border-[color:var(--gold)]/40 bg-[color:var(--card)] p-8 md:p-12">
+            <div className="holiday-hairline absolute inset-x-0 top-0" />
+            <div className="grid gap-10 md:grid-cols-2 md:items-start">
+              <div>
+                <HolidayOrnament className="h-6 w-36" />
+                <h2
+                  className="mt-6 font-display text-[color:var(--card-foreground)] text-[clamp(2.2rem,5.5vw,4rem)] leading-[1] max-w-sm"
+                  style={{ fontWeight: 400 }}
+                >
+                  Ceia de Natal{" "}
+                  <em className="serif-italic-gold italic">sem trabalho.</em>
+                </h2>
+                <p className="mt-6 text-[color:var(--muted-foreground)] max-w-md leading-relaxed">
+                  A gente cuida da brasa, você cuida da família. Monte a mesa de festa com os cortes da casa e
+                  retire aqui ou receba em casa.
+                </p>
+                <a href={WHATSAPP_URL} target="_blank" rel="noreferrer" className="btn-wine mt-8">
+                  <MessageCircle className="h-4 w-4" /> Montar minha ceia
+                </a>
+              </div>
+
+              <ul className="grid gap-4">
+                {[
+                  { name: "Picanha argentina", desc: "Com todos os acompanhamentos do interior.", price: "R$ 89,90" },
+                  { name: "Costela no bafo", desc: "Lenta na lenha, desmancha no garfo.", price: "R$ 64,90" },
+                  { name: "Carne de sol na brasa", desc: "O clássico da casa para a mesa cheia.", price: "R$ 64,90" },
+                ].map((it) => (
+                  <li
+                    key={it.name}
+                    className="flex items-center justify-between gap-4 rounded-2xl border border-[color:var(--border)] px-5 py-4"
+                  >
+                    <div>
+                      <p className="font-display text-lg text-[color:var(--card-foreground)]">{it.name}</p>
+                      <p className="text-sm text-[color:var(--muted-foreground)]">{it.desc}</p>
+                    </div>
+                    <span className="shrink-0 rounded-full bg-[color:var(--gold)]/15 px-3 py-1 font-mono text-sm text-[color:var(--gold)]">
+                      {it.price}
+                    </span>
+                  </li>
+                ))}
+                <li className="flex items-center justify-between gap-4 rounded-2xl border border-dashed border-[color:var(--gold)]/50 px-5 py-4">
+                  <p className="text-sm text-[color:var(--card-foreground)]">
+                    Mesa maior? A gente monta a quantidade que você precisa.
+                  </p>
+                  <Link
+                    to="/cardapio"
+                    className="shrink-0 text-sm text-[color:var(--wine)] inline-flex items-center gap-1 border-b border-[color:var(--wine)]/40 hover:border-[color:var(--wine)]"
+                  >
+                    Ver cardápio <ArrowRight className="h-3 w-3" />
+                  </Link>
+                </li>
+              </ul>
             </div>
           </div>
         </div>

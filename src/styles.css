@@ -292,3 +292,65 @@
   scrollbar-width: none;
   &::-webkit-scrollbar { display: none; }
 }
+
+/* ---------------- Natal: decorações sazonais (mesma paleta) ---------------- */
+@keyframes snow-fall {
+  0%   { transform: translate3d(0, -14vh, 0); opacity: 0; }
+  12%  { opacity: var(--flake-opacity, 0.7); }
+  88%  { opacity: var(--flake-opacity, 0.7); }
+  100% { transform: translate3d(var(--flake-drift, 24px), 114vh, 0); opacity: 0; }
+}
+@keyframes snow-twinkle {
+  0%, 100% { opacity: 0.3;  transform: scale(0.8) rotate(0deg); }
+  50%      { opacity: 1;    transform: scale(1.15) rotate(90deg); }
+}
+@keyframes garland-sway {
+  0%, 100% { transform: rotate(-0.7deg); }
+  50%      { transform: rotate(0.7deg); }
+}
+
+@utility snow-layer {
+  position: fixed;
+  inset: 0;
+  z-index: 30;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+@utility snow-flake {
+  position: absolute;
+  top: 0;
+  border-radius: 9999px;
+  background: radial-gradient(
+    circle at 35% 35%,
+    color-mix(in oklab, var(--gold) 70%, var(--cream)),
+    color-mix(in oklab, var(--gold) 90%, transparent) 60%,
+    transparent 100%
+  );
+  animation: snow-fall var(--flake-duration, 14s) linear infinite;
+  animation-delay: var(--flake-delay, 0s);
+  will-change: transform, opacity;
+}
+
+@utility snow-star {
+  position: absolute;
+  inset: 0;
+  background: color-mix(in oklab, var(--gold) 82%, var(--cream));
+  clip-path: polygon(50% 0, 62% 38%, 100% 50%, 62% 62%, 50% 100%, 38% 62%, 0 50%, 38% 38%);
+  animation: snow-twinkle 3.4s ease-in-out infinite;
+}
+
+@utility garland {
+  transform-origin: 50% 0;
+  animation: garland-sway 7s ease-in-out infinite;
+}
+
+@utility holiday-hairline {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .snow-layer { display: none; }
+  .garland { animation: none; }
+}
