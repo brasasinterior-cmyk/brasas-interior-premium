@@ -3,6 +3,7 @@ import { useMemo, useState } from "react";
 import { Search, Plus, Minus, Flame, ChevronDown } from "lucide-react";
 import { Layout } from "@/components/Layout";
 import { Reveal } from "@/components/Reveal";
+import { Garland, HolidayOrnament, HolidayPill } from "@/components/HolidayTheme";
 import { CartBar, useCart } from "@/components/OrderCart";
 import { useQuery } from "@tanstack/react-query";
 import { productsQuery } from "@/lib/site-data";
@@ -54,10 +55,14 @@ function Cardapio() {
     <Layout>
       {/* Menu page: always-dark editorial surface */}
       <div className="menu-dark min-h-screen bg-[color:var(--cream)]">
-      <section className="pt-32 pb-10 bg-[color:var(--cream)]">
-        <div className="mx-auto max-w-7xl px-6 md:px-10 grid md:grid-cols-2 gap-10 items-end">
+      <section className="relative pt-32 pb-10 bg-[color:var(--cream)] overflow-hidden">
+        <Garland className="pointer-events-none absolute inset-x-0 top-[68px] h-16 w-full" />
+        <div className="relative mx-auto max-w-7xl px-6 md:px-10 grid md:grid-cols-2 gap-10 items-end">
           <div>
-            <p className="eyebrow text-[color:var(--gold)] before:bg-[color:var(--gold)]">Cardápio da casa</p>
+            <div className="flex flex-wrap items-center gap-4">
+              <HolidayPill tone="gold" />
+              <p className="eyebrow text-[color:var(--gold)] before:bg-[color:var(--gold)]">Cardápio da casa</p>
+            </div>
             <h1 className="mt-6 font-display text-[color:var(--cocoa)] text-[clamp(2.5rem,7vw,5rem)] leading-[1]" style={{ fontWeight: 400 }}>
               Escolha seu{" "}
               <em className="serif-italic-gold italic">momento.</em>
@@ -109,6 +114,10 @@ function Cardapio() {
           </div>
         </div>
       </section>
+
+      <div className="bg-[color:var(--cream)] flex justify-center pb-2">
+        <HolidayOrnament className="h-6 w-44" />
+      </div>
 
       {/* Items */}
       <section className="pb-24 bg-[color:var(--cream)]">

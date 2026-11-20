@@ -107,11 +107,13 @@ export function HolidayOrnament({ className = "" }: { className?: string }) {
   );
 }
 
-/** Selo "Tempo de festas" legível nos dois temas. */
-export function HolidayPill({ className = "" }: { className?: string }) {
+/** Selo "Tempo de festas" legível nos dois temas. `tone="gold"` para fundos escuros. */
+export function HolidayPill({ className = "", tone = "auto" }: { className?: string; tone?: "auto" | "gold" }) {
   return (
     <span
-      className={`inline-flex items-center gap-2 rounded-full border border-[color:var(--gold)]/50 bg-[color:var(--gold)]/10 px-3.5 py-1.5 text-[10px] uppercase tracking-[0.28em] text-top ${className}`}
+      className={`inline-flex items-center gap-2 rounded-full border border-[color:var(--gold)]/50 bg-[color:var(--gold)]/10 px-3.5 py-1.5 text-[10px] uppercase tracking-[0.28em] ${
+        tone === "gold" ? "text-[color:var(--gold)]" : "text-top"
+      } ${className}`}
     >
       <svg viewBox="0 0 24 24" fill="none" stroke="var(--gold)" strokeWidth="1.6" strokeLinecap="round" className="h-3 w-3" aria-hidden>
         <path d="M12 2v20M4 6l16 12M20 6L4 18" />
