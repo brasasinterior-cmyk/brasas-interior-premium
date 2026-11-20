@@ -5,6 +5,7 @@ import { Reveal } from "@/components/Reveal";
 import { Garland, HolidayOrnament, HolidayPill } from "@/components/HolidayTheme";
 import { WHATSAPP_URL } from "@/components/WhatsAppFloat";
 import hero from "@/assets/hero-churrasqueira.jpg";
+import presepioAsset from "@/assets/presepio.jpg.asset.json";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -32,6 +33,11 @@ function Home() {
     <Layout>
       {/* HERO */}
       <section className="relative bg-cocoa-rays pt-28 pb-16 md:pt-32 md:pb-24 overflow-hidden">
+        {/* Presépio ao fundo da abertura, sob véu na cor do tema */}
+        <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden">
+          <img src={presepioAsset.url} alt="" className="h-full w-full object-cover object-[50%_42%] opacity-[0.4]" />
+          <div className="absolute inset-0 bg-[color:var(--top-bg)]/85" />
+        </div>
         <img
           src={hero}
           alt=""

@@ -4,6 +4,7 @@ import { Search, Plus, Minus, Flame, ChevronDown } from "lucide-react";
 import { Layout } from "@/components/Layout";
 import { Reveal } from "@/components/Reveal";
 import { Garland, HolidayOrnament, HolidayPill } from "@/components/HolidayTheme";
+import presepioAsset from "@/assets/presepio.jpg.asset.json";
 import { CartBar, useCart } from "@/components/OrderCart";
 import { useQuery } from "@tanstack/react-query";
 import { productsQuery } from "@/lib/site-data";
@@ -54,8 +55,13 @@ function Cardapio() {
   return (
     <Layout>
       {/* Menu page: always-dark editorial surface */}
-      <div className="menu-dark min-h-screen bg-[color:var(--cream)]">
-      <section className="relative pt-32 pb-10 bg-[color:var(--cream)] overflow-hidden">
+      <div className="menu-dark relative min-h-screen bg-[color:var(--cream)]">
+      {/* Presépio ao fundo, sob véu escuro para manter tudo legível */}
+      <div aria-hidden className="pointer-events-none fixed inset-0 z-0 overflow-hidden">
+        <img src={presepioAsset.url} alt="" className="h-full w-full object-cover object-[50%_38%] opacity-[0.45]" />
+        <div className="absolute inset-0 bg-[color:var(--cream)]/75" />
+      </div>
+      <section className="relative pt-32 pb-10 overflow-hidden">
         <Garland className="pointer-events-none absolute inset-x-0 top-[68px] h-16 w-full" />
         <div className="relative mx-auto max-w-7xl px-6 md:px-10 grid md:grid-cols-2 gap-10 items-end">
           <div>
@@ -115,12 +121,12 @@ function Cardapio() {
         </div>
       </section>
 
-      <div className="bg-[color:var(--cream)] flex justify-center pb-2">
+      <div className="relative flex justify-center pb-2">
         <HolidayOrnament className="h-6 w-44" />
       </div>
 
       {/* Items */}
-      <section className="pb-24 bg-[color:var(--cream)]">
+      <section className="relative pb-24">
         <div className="mx-auto max-w-7xl px-6 md:px-10">
           <div className="flex items-baseline justify-between mb-6">
             <div>

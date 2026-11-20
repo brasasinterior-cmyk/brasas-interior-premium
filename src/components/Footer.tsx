@@ -3,7 +3,7 @@ import { Instagram, Facebook, Snowflake } from "lucide-react";
 
 export function Footer() {
   return (
-    <footer className="bg-[color:var(--cream)] border-t border-[color:var(--border)]">
+    <footer className="relative z-10 bg-[color:var(--cream)] border-t border-[color:var(--border)]">
       <div className="holiday-hairline" />
       <div className="mx-auto max-w-7xl px-6 md:px-10 py-10 flex flex-col md:flex-row items-center justify-between gap-6">
         <div className="flex items-center gap-3">
