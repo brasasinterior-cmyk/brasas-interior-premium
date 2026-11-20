@@ -160,6 +160,10 @@
 @utility text-top-50 { color: color-mix(in oklab, var(--top-fg) 50%, transparent); }
 @utility text-top-40 { color: color-mix(in oklab, var(--top-fg) 40%, transparent); }
 @utility bg-top { background-color: var(--top-bg); color: var(--top-fg); }
+@utility bg-top-85 {
+  background-color: color-mix(in oklab, var(--top-bg) 85%, transparent);
+  color: var(--top-fg);
+}
 @utility border-top-line { border-color: var(--top-border); }
 
 /* Hero artwork blends differently per theme */

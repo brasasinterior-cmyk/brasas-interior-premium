@@ -4,7 +4,6 @@ import { Layout } from "@/components/Layout";
 import { Reveal } from "@/components/Reveal";
 import { Garland, HolidayOrnament, HolidayPill } from "@/components/HolidayTheme";
 import { WHATSAPP_URL } from "@/components/WhatsAppFloat";
-import hero from "@/assets/hero-churrasqueira.jpg";
 import presepioAsset from "@/assets/presepio.jpg.asset.json";
 
 export const Route = createFileRoute("/")({
@@ -35,15 +34,10 @@ function Home() {
       <section className="relative bg-cocoa-rays pt-28 pb-16 md:pt-32 md:pb-24 overflow-hidden">
         {/* Presépio ao fundo da abertura, sob véu na cor do tema */}
         <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden">
-          <img src={presepioAsset.url} alt="" className="h-full w-full object-cover object-[50%_42%] opacity-[0.4]" />
-          <div className="absolute inset-0 bg-[color:var(--top-bg)]/85" />
+          <img src={presepioAsset.url} alt="" className="h-full w-full object-cover object-[50%_42%] opacity-[0.9]" />
+          <div className="absolute inset-0 bg-gradient-to-r from-[color:var(--top-bg)] via-[color:var(--top-bg)]/75 to-[color:var(--top-bg)]/25" />
+          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[color:var(--top-bg)]/70" />
         </div>
-        <img
-          src={hero}
-          alt=""
-          aria-hidden
-          className="pointer-events-none absolute right-[-10%] top-1/2 -translate-y-1/2 h-[85%] w-[65%] object-cover hero-art [mask-image:radial-gradient(50%_60%_at_60%_50%,black,transparent_75%)]"
-        />
         <Garland className="pointer-events-none absolute inset-x-0 top-[68px] h-16 w-full" />
 
         <div className="relative mx-auto max-w-7xl px-6 md:px-10">

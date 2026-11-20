@@ -58,8 +58,8 @@ function Cardapio() {
       <div className="menu-dark relative min-h-screen bg-[color:var(--cream)]">
       {/* Presépio ao fundo, sob véu escuro para manter tudo legível */}
       <div aria-hidden className="pointer-events-none fixed inset-0 z-0 overflow-hidden">
-        <img src={presepioAsset.url} alt="" className="h-full w-full object-cover object-[50%_38%] opacity-[0.45]" />
-        <div className="absolute inset-0 bg-[color:var(--cream)]/75" />
+        <img src={presepioAsset.url} alt="" className="h-full w-full object-cover object-[50%_38%] opacity-[0.85]" />
+        <div className="absolute inset-0 bg-[color:var(--cream)]/55" />
       </div>
       <section className="relative pt-32 pb-10 overflow-hidden">
         <Garland className="pointer-events-none absolute inset-x-0 top-[68px] h-16 w-full" />

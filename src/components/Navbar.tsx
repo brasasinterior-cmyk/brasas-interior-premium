@@ -42,7 +42,7 @@ export function Navbar() {
   useEffect(() => setOpen(false), [pathname]);
 
   return (
-    <header className="fixed inset-x-0 top-0 z-50 border-b border-top-line bg-top/85 backdrop-blur-md">
+    <header className="fixed inset-x-0 top-0 z-50 border-b border-top-line bg-top-85 backdrop-blur-md">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-3">
         <Link to="/" className="flex items-center gap-3">
           <LogoMark />
